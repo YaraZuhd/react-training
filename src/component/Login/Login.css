@@ -56,3 +56,9 @@
     background: #000;
     color: #fff;
 }
+
+.login p{
+   margin-top: 20px;
+   color: rgba(230, 12, 12, 0.728);
+   font-size: 0.99rem;
+}
