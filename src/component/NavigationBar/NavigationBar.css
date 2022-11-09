@@ -1,0 +1,53 @@
+nav {
+    position: relative;
+    height: 40px;
+    width: 100%;
+    background-color: #000;
+    color : #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+nav div a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0px 10px;
+    margin-left: 100px;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 100px;
+    gap: 20px;
+}
+
+nav div p {
+    font-size: 1rem;
+    padding: 0px 10px;
+}
+
+nav div p span {
+    color: #ff0;
+    font-weight: bold;
+}
+
+nav div p span:hover {
+    text-decoration: underline;
+
+}
+
+nav div .icon {
+    font-size: 0.99rem;
+    border: 1px solid #fff;
+    color : #000;
+    background-color: #fff;
+    padding: 10px 12px;
+    border-radius: 50%;
+
+}
