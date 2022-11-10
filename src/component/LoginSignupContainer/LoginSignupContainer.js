@@ -21,7 +21,7 @@ const LoginSignupContainer = () => {
                     {isLogin ? "Signup" : "Login"}
                 </button>
             </div>
-            <Signup/>
+            <Signup loginStatus={handleClick}/>
         </div>
     );
 }

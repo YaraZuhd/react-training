@@ -1,7 +1,10 @@
 import "./Login.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
+    const navigate = useNavigate();
     const [state, setState]  =useState({loggedIn:true});
     const [errorState, setErrorState] = useState({"errorMessage": "", "type": ""});
     const [userInput, setUserInput] = useState({
@@ -13,14 +16,15 @@ const Login = () => {
         setUserInput((prevState) => {
             return {...prevState, userEmail: event.target.value}
         })
-    }
+    };
 
     const passwordChangeHandler = (event) => {
         event.preventDefault()
         setUserInput((prevState) => {
             return {...prevState, userPassword: event.target.value}
         })
-    }
+    };
+
 
     const loginUser = async () => {
         try {
@@ -32,9 +36,9 @@ const Login = () => {
             const response = await fetch('http://localhost:3000/login', requestOptions)
             if(response.status === 200 && response.ok){
                 const data = await response.text();
-                console.log(data);
                 localStorage.setItem('token', data)
-                setState({loggedIn: true})
+                setState({loggedIn: true});
+                navigate('/');
                 //authContext.setLoggedInState(true)
                 //history.push("./home")
             }
@@ -47,20 +51,20 @@ const Login = () => {
             //authContext.setLoggedInState(false)
             setErrorState({"errorMessage": error.message, "type": error.name});
         }
-    }
+    };
 
     const handleLogin = (event) => {
         event.preventDefault();
         loginUser(setUserInput);
         setUserInput({userEmail: "", userPassword: ""});
-    }
+    };
 
 
     return (
         <div className="login">
             <h1>Login</h1>
             <form>
-                <input  t value={userInput.userEmail} required ={true} 
+                <input value={userInput.userEmail} required ={true} 
                 type={'email'} placeholder={'Email'} onChange={emailChangeHandler}/>
                 <input value={userInput.userPassword} required ={true} 
                 type={'password'} placeholder={'Password'} onChange={passwordChangeHandler}/>

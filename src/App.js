@@ -1,12 +1,10 @@
 import './App.css';
-import LoginSignupContainer from './component/LoginSignupContainer/LoginSignupContainer';
-import NavigationBar from './component/NavigationBar/NavigationBar';
+import Home from './component/Home/Home';
 
 const App = ()=> {
   return (
     <div className="App">
-        <NavigationBar/>
-        <LoginSignupContainer/>
+      <Home/>
     </div>
   );
 }
