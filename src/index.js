@@ -9,6 +9,7 @@ import AuthPage from './Pages/Auth';
 import HomePage from './Pages/HomePage';
 import ProductList from './component/Products/productList';
 import Cart from './component/Cart/cart';
+import HighlightedProduct from './component/Products/HighlightedProduct';
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path : "products",
     element : <ProductList/>
+  },
+  {
+    path : "products/:productId",
+    element: <HighlightedProduct/>
   },
   {
     path: "login",

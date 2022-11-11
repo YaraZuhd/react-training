@@ -10,7 +10,7 @@ const Product = (props) => {
             </blockquote>
             <figcaption>{props.desription}</figcaption>
           </figure>
-          <Link className='btn'>View Fullscreen</Link>
+          <Link className='btn' to={`/products/${props.id}`}>View Fullscreen</Link>
         </li>
       );
 }
