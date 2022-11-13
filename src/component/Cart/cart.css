@@ -1,7 +1,26 @@
-.card {
-    padding: 1rem;
-    margin: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    background-color: white;
-  }
+.cart {
+    display: grid;
+    grid-template-columns: 30% 70% 0%;
+    width: 60%;
+    height: 550px;
+    background-color: #b57b7b;
+    padding: 0px;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #000;
+    overflow: hidden;
+    transition: 0.3s linear;
+}
+
+.cart .side-div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+  url('https://www.europarl.europa.eu/resources/library/images/20160609PHT31661/20160609PHT31661_original.jpg');
+  background-size: cover;
+  background-position: center;
+}

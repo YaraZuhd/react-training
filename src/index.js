@@ -32,6 +32,11 @@ const router = createBrowserRouter([
    
   },
   {
+    path: "signup",
+    element : <AuthPage></AuthPage>,
+   
+  },
+  {
     path: "cart",
     element : <Cart/>
   }, 

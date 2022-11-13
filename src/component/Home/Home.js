@@ -16,14 +16,6 @@ const Home = () => {
         return (
             <div className="container">
               <NavigationBar/>
-              <div>
-                <div>
-                    {/* <h3>We Will Help You Find What You want</h3> */}
-                </div>
-                <img src="https://www.addonchatx.com/wp-content/uploads/2019/07/online-retail.png" alt=""
-                style={{width : '65%', paddingTop: '5px', paddingLeft : '500px'}}>
-                </img>
-              </div>
             </div>
         );
     }

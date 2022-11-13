@@ -22,7 +22,7 @@ const NavigationBar = () => {
           const response = await fetch(`http://localhost:3000/users/me`, requestOptions)
           if(response.status === 200 && response.ok){
               const data = await response.json();
-              setUserData(data)
+              setUserData(data);
               localStorage.setItem('user', JSON.stringify(userData));
           }
           else {
@@ -39,7 +39,7 @@ const NavigationBar = () => {
 
    const handleLogout = () => {
       localStorage.removeItem('token');
-      localStorage.removeItem('user');
+      //localStorage.removeItem('user');
       navigate("/login");
    }
 
