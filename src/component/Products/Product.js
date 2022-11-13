@@ -14,7 +14,7 @@ const Product = (props) => {
             <blockquote>
               <p>{props.name}</p>
             </blockquote>
-            <figcaption>{props.desription}</figcaption>
+            <figcaption>${props.price}</figcaption>
           </figure>
           <a className='btn' onClick={NavigateTo} href="">View Fullscreen</a>
           {/* <Link className='btn' to={{pathname :`/products/${props.id}`,state:`${props.id}`}}>View Fullscreen</Link> */}
