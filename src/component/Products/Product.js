@@ -1,7 +1,13 @@
 import "./Product.css"
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
+  
+  const navigate = useNavigate();
+
+  const NavigateTo = () =>{
+    navigate(`/products/${props.id}`,{state:{id:`${props.id}`}});
+  }
     return (
         <li className="item">
           <figure>
@@ -10,7 +16,8 @@ const Product = (props) => {
             </blockquote>
             <figcaption>{props.desription}</figcaption>
           </figure>
-          <Link className='btn' to={`/products/${props.id}`}>View Fullscreen</Link>
+          <a className='btn' onClick={NavigateTo} href="">View Fullscreen</a>
+          {/* <Link className='btn' to={{pathname :`/products/${props.id}`,state:`${props.id}`}}>View Fullscreen</Link> */}
         </li>
       );
 }

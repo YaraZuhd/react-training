@@ -29,7 +29,7 @@ const ProductList = () => {
         } catch(error) {
            console.log(error.message);
        }
-   },[]);
+   },[token]);
  
     useEffect(()=>{
         fetchProducts();

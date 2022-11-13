@@ -23,6 +23,7 @@ const NavigationBar = () => {
           if(response.status === 200 && response.ok){
               const data = await response.json();
               setUserData(data)
+              localStorage.setItem('user', JSON.stringify(userData));
           }
           else {
               throw new Error("Email or Password is invalid")
@@ -38,6 +39,7 @@ const NavigationBar = () => {
 
    const handleLogout = () => {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       navigate("/login");
    }
 

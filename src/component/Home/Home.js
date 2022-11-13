@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Home.css"
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
         if(localStorage.getItem('token') === null){
            navigate('login')
         }
-    },[]);
+    },[navigate]);
     if(localStorage.getItem('token') != null){
         return (
             <div className="container">
@@ -20,7 +20,7 @@ const Home = () => {
                 <div>
                     {/* <h3>We Will Help You Find What You want</h3> */}
                 </div>
-                <img src="https://www.addonchatx.com/wp-content/uploads/2019/07/online-retail.png" 
+                <img src="https://www.addonchatx.com/wp-content/uploads/2019/07/online-retail.png" alt=""
                 style={{width : '65%', paddingTop: '5px', paddingLeft : '500px'}}>
                 </img>
               </div>

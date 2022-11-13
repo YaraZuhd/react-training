@@ -12,9 +12,21 @@ max-width: 40rem;
 font-size: 2.5rem;
 }
 
-.product figcaption {
-font-style: italic;
-font-size: 1.5rem;
-text-align: right;
-color: #a1e0e0;
+
+
+.product  .desription{
+    text-align: right;
+    margin-top:10px;
+    margin-bottom:10px;
+    color: #a0f1f19d;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+
+.product  .price{
+    text-align: right;
+    color: #15e7e7;
+    font-style: italic;
+    font-size: 1.5rem;
 }
