@@ -1,5 +1,5 @@
 import NavigationBar from "../NavigationBar/NavigationBar";
-import jwt_decode from 'jwt-decode';
+//import jwt_decode from 'jwt-decode';
 import { useEffect, useState, useCallback } from 'react';
 
 const Cart = () => {
@@ -9,10 +9,10 @@ const Cart = () => {
 
 
     let token = "";
-    let decoded;
+    //et decoded;
     if(localStorage.getItem('token') != null){
       token = localStorage.getItem('token');
-      decoded = jwt_decode(token);
+      //decoded = jwt_decode(token);
     }
 
     const fetchUser =  useCallback(async () => {

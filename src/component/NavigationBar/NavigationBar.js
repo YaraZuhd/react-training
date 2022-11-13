@@ -31,7 +31,7 @@ const NavigationBar = () => {
        } catch(error) {
           console.log(error.message);
       }
-  }, [token]);
+  }, [token,userData]);
 
    useEffect(()=>{
       fetchUser();
