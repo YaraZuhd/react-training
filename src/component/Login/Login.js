@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
     const navigate = useNavigate();
     const [state, setState]  =useState({loggedIn:true});
-    const [errorState, setErrorState] = useState({"errorMessage": "", "type": ""});
+    const [errorState, setErrorState] = useState("");
     const [userInput, setUserInput] = useState({
         userEmail: "",
         userPassword: "",
@@ -34,29 +34,33 @@ const Login = () => {
                 body: JSON.stringify({ email: userInput.userEmail, password: userInput.userPassword })
             };
             const response = await fetch('http://localhost:3000/login', requestOptions)
+            console.log(response);
             if(response.status === 200 && response.ok){
                 const data = await response.text();
                 localStorage.setItem('token', data)
                 setState({loggedIn: true});
                 navigate('/');
-                //authContext.setLoggedInState(true)
-                //history.push("./home")
             }
             else {
-                throw new Error("Email or Password is invalid")
-                //authContext.setLoggedInState(false)
+                setErrorState("Email or Password is invalid");
+
             }
          } catch(error) {
             console.log(error.message);
-            //authContext.setLoggedInState(false)
-            setErrorState({"errorMessage": error.message, "type": error.name});
+            setErrorState("Invalid Information");
+        }
+        if(errorState === "") {
+            setUserInput({userEmail: "", userPassword: ""});
         }
     };
 
     const handleLogin = (event) => {
         event.preventDefault();
-        loginUser(setUserInput);
-        setUserInput({userEmail: "", userPassword: ""});
+        if(userInput.userEmail === "" || userInput.userPassword === ""){
+            setErrorState("Email or Password is invalid");
+        }else{
+            loginUser(setUserInput);
+        }
     };
 
 
@@ -70,7 +74,7 @@ const Login = () => {
                 type={'password'} placeholder={'Password'} onChange={passwordChangeHandler}/>
                 <button type="submit" onClick={handleLogin}>Login</button>
             </form>
-            <p>{errorState.errorMessage}</p>
+            <p>{errorState}</p>
         </div>
     );
 }
