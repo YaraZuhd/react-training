@@ -3,6 +3,7 @@ import LoginSignupContainer from '../component/LoginSignupContainer/LoginSignupC
 import NavigationBar from '../component/NavigationBar/NavigationBar';
 
 const AuthPage = () => {
+
    return (
     <div>
         <NavigationBar/>
