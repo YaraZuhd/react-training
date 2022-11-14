@@ -1,6 +1,6 @@
 import "./Login.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -34,30 +34,28 @@ const Login = () => {
                 body: JSON.stringify({ email: userInput.userEmail, password: userInput.userPassword })
             };
             const response = await fetch('http://localhost:3000/login', requestOptions)
-            console.log(response);
             if(response.status === 200 && response.ok){
-                const data = await response.text();
-                localStorage.setItem('token', data)
+                const data = await response.json();
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
                 setState({loggedIn: true});
+                setUserInput({userEmail: "", userPassword: ""});
+                setErrorState("");
                 navigate('/');
             }
             else {
                 setErrorState("Email or Password is invalid");
-
             }
          } catch(error) {
             console.log(error.message);
             setErrorState("Invalid Information");
-        }
-        if(errorState === "") {
-            setUserInput({userEmail: "", userPassword: ""});
         }
     };
 
     const handleLogin = (event) => {
         event.preventDefault();
         if(userInput.userEmail === "" || userInput.userPassword === ""){
-            setErrorState("Email or Password is invalid");
+            setErrorState("Email And Password Are Required");
         }else{
             loginUser(setUserInput);
         }
@@ -74,6 +72,7 @@ const Login = () => {
                 type={'password'} placeholder={'Password'} onChange={passwordChangeHandler}/>
                 <button type="submit" onClick={handleLogin}>Login</button>
             </form>
+            <Link className="navigateTo" to={'/signup'}>Don't have account?</Link>
             <p>{errorState}</p>
         </div>
     );

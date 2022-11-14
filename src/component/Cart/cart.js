@@ -1,7 +1,7 @@
 import NavigationBar from "../NavigationBar/NavigationBar";
 //import jwt_decode from 'jwt-decode';
 import { useEffect, useState, useCallback } from 'react';
-
+import "./cart.css"
 const Cart = () => {
 
     const [cart, setCart] = useState({});
@@ -9,31 +9,11 @@ const Cart = () => {
 
 
     let token = "";
-    //et decoded;
+    //let decoded;
     if(localStorage.getItem('token') != null){
       token = localStorage.getItem('token');
       //decoded = jwt_decode(token);
     }
-
-    const fetchUser =  useCallback(async () => {
-        try {
-            const requestOptions = {
-                headers: { 'Content-Type': 'application/json',
-                Authorization : `Bearer ${token}`
-                },
-            };
-            const response = await fetch(`http://localhost:3000/users/me`, requestOptions)
-            if(response.status === 200 && response.ok){
-                const data = await response.json();
-                setUserData(data);
-            }
-            else {
-                throw new Error("Email or Password is invalid")
-            }
-         } catch(error) {
-            console.log(error.message);
-        }
-    }, [token]);
 
     const fetchCart =  useCallback(async () => {
         try {
@@ -56,21 +36,21 @@ const Cart = () => {
     }, [token]);
 
     useEffect(()=>{
+        setUserData(JSON.parse(localStorage.getItem('user')));
         fetchCart();
-        fetchUser();
     },[]);
 
-    console.log(localStorage.getItem('user'));
 
    return(
     <div>
         <NavigationBar/>
         <div className="cart">
-            <figure className="product">
-                <p>{userData.firstname} Cart</p>
-                <figcaption className='desription'>Quentity : {cart.quentity}</figcaption>
-                <figcaption className='desription'>Price : {cart.price}</figcaption>
-                <figcaption className='desription'>Status : {cart.status}</figcaption>
+            <div className="side-div"></div>
+            <figure className="cart-info">
+                <p className="title"><span className="username">{userData.firstname}</span> Cart</p>
+                <figcaption className='desription'>Total Quentity : {cart.quentity}</figcaption>
+                <figcaption className='price'>Total Price  : {cart.price}</figcaption>
+                <figcaption className='status'>Cart Status : {cart.status}</figcaption>
             </figure>
         </div>
     </div>

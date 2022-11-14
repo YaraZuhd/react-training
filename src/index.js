@@ -28,12 +28,12 @@ const router = createBrowserRouter([
   },
   {
     path: "login",
-    element : <AuthPage></AuthPage>,
+    element : <AuthPage login = "true"></AuthPage>,
    
   },
   {
     path: "signup",
-    element : <AuthPage></AuthPage>,
+    element : <AuthPage login = "false"></AuthPage>,
    
   },
   {

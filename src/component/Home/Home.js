@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import { useNavigate } from "react-router-dom";
 import "./Home.css"
 
 const Home = () => {
-    // check if its authinicated let him visit home but if not redirect him to login 
     const navigate = useNavigate();
+    const token = localStorage.getItem('token')
 
     useEffect(()=>{
-        if(localStorage.getItem('token') === null){
+        if(token === null){
            navigate('login')
         }
     },[navigate]);
-    if(localStorage.getItem('token') != null){
+    if(token != null){
         return (
             <div className="container">
               <NavigationBar/>

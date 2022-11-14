@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Login from "../Login/Login";
 import  Signup  from "../Signup/Signup";
 import "./LoginSignupContainer.css"
 
-const LoginSignupContainer = () => {
+const LoginSignupContainer = (props) => {
     const [isLogin, setIsLogin] = useState(true);
 
     const location = useLocation();
@@ -32,13 +32,8 @@ const LoginSignupContainer = () => {
 
     return(
         <div className="login-signup-container" ref={LoginSignupRef}>
-            <Login/>
-            <div className="side-div">
-                <button type="button" onClick={handleClick}>
-                    {isLogin ? "Signup" : "Login"}
-                </button>
-            </div>
-            <Signup loginStatus={handleClick}/>
+            {props.login === "true" && <Login/>}
+            {props.login === "false" && <Signup/>}
         </div>
     );
 }

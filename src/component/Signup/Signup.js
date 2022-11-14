@@ -1,8 +1,11 @@
   import "./Signup.css";
   import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-  const Signup = ({loginStatus}) => {
+  const Signup = () => {
     const [errorState, setErrorState] = useState("");
+
+    const navigate = useNavigate();
 
     const [userInput, setUserInput] = useState({
       userFirstName : "",
@@ -71,15 +74,12 @@
             phone : userInput.userPhone, email: userInput.userEmail, password: userInput.userPassword , address: userInput.userAddress})
       };
       const response = await fetch('http://localhost:3000/signup', requestOptions)
-      console.log(response);
       if(response.status === 200 && response.ok){
-          const data = await response.text();
-          console.log(data);
+          navigate("/login")
       }
       else {
         const error = await  response.text();
           setErrorState(error);
-          //throw new Error("Enter Valid Information")
       }
   } catch(error) {
       console.log(error.message);
@@ -87,12 +87,16 @@
     }
     if(errorState === ""){
       setUserInput({userFirstName: "", userLastName: "",userEmail: "", userPassword: "",userPhone: "", userAddress: "", userGender: ""});
-      loginStatus(true);
     }
   }
 
   const handleRegister = (event) => {
     event.preventDefault();
+    if(userInput.userFirstName === "" || userInput.userLastName === "" ||
+    userInput.userGender === "" || userInput.userPhone === "" ||
+    userInput.userEmail === "" || userInput.userPassword === "" ||userInput.userAddress === ""){
+      setErrorState("Please Enter Valid Information");
+    }
     createUser();   
   };
 
@@ -117,6 +121,7 @@
               value={userInput.userAddress} onChange={addressChangeHandler}/>
               <button type="submit" onClick={handleRegister}>Sign Up</button>
           </form>
+          <Link className="navigateTo" to={'/login'}>Already have an account?</Link>
           <p>{errorState}</p>
       </div>
     )

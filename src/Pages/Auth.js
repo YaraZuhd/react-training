@@ -2,12 +2,12 @@ import React from "react";
 import LoginSignupContainer from '../component/LoginSignupContainer/LoginSignupContainer';
 import NavigationBar from '../component/NavigationBar/NavigationBar';
 
-const AuthPage = () => {
+const AuthPage = (props) => {
 
    return (
     <div>
         <NavigationBar/>
-        <LoginSignupContainer/>
+        <LoginSignupContainer login = {props.login}/>
     </div>
    );
 }

@@ -1,3 +1,31 @@
+@media only screen and (max-width: 500px) {
+    nav {
+      width: 100% !important;
+    }
+    nav .home-link a{
+        margin-left: 5px !important;
+        font-size: small !important;
+        padding-left: 2px !important;
+        white-space: nowrap;
+    }
+
+    nav div{
+        gap : 5px !important;
+        margin-right: 30px !important;
+    }
+
+    nav div p{
+        padding-right: 5px !important;
+        font-size: small !important;
+        white-space: nowrap;
+    }
+
+    nav div .icon{
+        font-size: smaller !important;
+        padding: 5px !important;
+    }
+
+  }
 nav {
     position: relative;
     height: 40px;
