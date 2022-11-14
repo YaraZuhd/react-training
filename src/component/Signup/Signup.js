@@ -62,7 +62,7 @@
     })
   };
 
-  const createUser = async (setUserInput) => {
+  const createUser = async () => {
     try {
       const requestOptions = {
           method: 'POST',
@@ -71,27 +71,29 @@
             phone : userInput.userPhone, email: userInput.userEmail, password: userInput.userPassword , address: userInput.userAddress})
       };
       const response = await fetch('http://localhost:3000/signup', requestOptions)
+      console.log(response);
       if(response.status === 200 && response.ok){
           const data = await response.text();
           console.log(data);
       }
       else {
-          throw new Error("Enter Valid Information")
+        const error = await  response.text();
+          setErrorState(error);
+          //throw new Error("Enter Valid Information")
       }
   } catch(error) {
       console.log(error.message);
       setErrorState(error.message);
-      if(errorState === ""){
-        setUserInput({userFirstName: "", userLastName: "",userEmail: "", userPassword: "",userPhone: "", userAddress: "", userGender: ""});
-        loginStatus(true);
-      }
-  }
-
+    }
+    if(errorState === ""){
+      setUserInput({userFirstName: "", userLastName: "",userEmail: "", userPassword: "",userPhone: "", userAddress: "", userGender: ""});
+      loginStatus(true);
+    }
   }
 
   const handleRegister = (event) => {
     event.preventDefault();
-    createUser(setUserInput);   
+    createUser();   
   };
 
 
@@ -103,19 +105,19 @@
               value={userInput.userFirstName} onChange={firstNameChangeHandler}/>
               <input type={'text'} required ={true} placeholder={'Last Name'}
               value={userInput.userLastName} onChange={lastNameChangeHandler}/>
+               <input type={'text'} required ={true} placeholder={'Gender'}
+              value={userInput.userGender} onChange={genderChangeHandler}/>
+              <input type={'text'} required ={true} placeholder={'Phone'}
+              value={userInput.userPhone} onChange={phoneChangeHandler}/>
               <input type={'email'} required ={true} placeholder={'Email'}
               value={userInput.userEmail} onChange={emailChangeHandler}/>
               <input type={'password'} required ={true} placeholder={'Password'}
               value={userInput.userPassword} onChange={passwordChangeHandler}/>
-              <input type={'text'} required ={true} placeholder={'Phone'}
-              value={userInput.userPhone} onChange={phoneChangeHandler}/>
               <input type={'text'} required ={true} placeholder={'Address'}
               value={userInput.userAddress} onChange={addressChangeHandler}/>
-              <input type={'text'} required ={true} placeholder={'Gender'}
-              value={userInput.userGender} onChange={genderChangeHandler}/>
               <button type="submit" onClick={handleRegister}>Sign Up</button>
           </form>
-          {/* <p>{errorState}</p> */}
+          <p>{errorState}</p>
       </div>
     )
   }

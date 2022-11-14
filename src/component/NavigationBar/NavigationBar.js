@@ -35,7 +35,7 @@ const NavigationBar = () => {
 
    useEffect(()=>{
       fetchUser();
-   },[fetchUser]);
+   },[]);
 
    const handleLogout = () => {
       localStorage.removeItem('token');

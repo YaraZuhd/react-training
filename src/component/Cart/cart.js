@@ -58,7 +58,7 @@ const Cart = () => {
     useEffect(()=>{
         fetchCart();
         fetchUser();
-    },[fetchCart, fetchUser]);
+    },[]);
 
     console.log(localStorage.getItem('user'));
 
