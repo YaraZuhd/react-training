@@ -17,9 +17,8 @@
     margin-bottom: 20px;
     background-color: #f2f200bf;
     font-size: 24px;
-    width: 300px;
+    width: 240px;
     height: 40px;
-    padding: 5px;
    }
 
    h2::after{
@@ -27,8 +26,8 @@
     border-top: 40px solid #f2f200bf;
     border-right: 40px solid transparent;
     position: relative;
-    left: 12px;
-    top: 34px;
+    left: 7px;
+    top: 40px;
    }
 
    .row{
