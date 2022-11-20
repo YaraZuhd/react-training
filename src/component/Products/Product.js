@@ -4,6 +4,10 @@ import { FaCartPlus, FaEye  } from 'react-icons/fa';
 import logo from '../../photo1.jpg';
 
 // import 'bootstrap/dist/css/bootstrap.css';
+// https://blog.logrocket.com/create-responsive-navbar-react-css/
+// https://codesandbox.io/s/react-responsive-nav-3n3lu?file=/src/components/Navbar.js
+// https://www.aleksandrhovhannisyan.com/blog/responsive-navbar-tutorial/
+// https://stackoverflow.com/questions/47524680/css-single-column-media-query
 
 
 
