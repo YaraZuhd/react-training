@@ -1,4 +1,4 @@
-.item {
+/* .item {
     margin: 1rem 1rem;
     padding: 1rem;
     display: flex;
@@ -34,13 +34,13 @@
   .item figcaption {
     font-style: italic;
     color: #3f6d6d;
-  }
+  }*/
 
-  .btn{
+  /* .btn{
     text-decoration: none;
     color: rgba(119, 106, 106, 0.849);
     cursor: pointer;
   }
   .btn:hover{
     color: #000;
-  }
+  }  */

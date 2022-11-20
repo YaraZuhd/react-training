@@ -36,6 +36,7 @@ const Login = () => {
             const response = await fetch('http://localhost:3000/login', requestOptions)
             if(response.status === 200 && response.ok){
                 const data = await response.json();
+                console.log(data);
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
                 setState({loggedIn: true});

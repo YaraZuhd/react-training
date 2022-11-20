@@ -4,6 +4,8 @@ import './productList.css'
 import Product from "./Product";
 
 
+// https://www.youtube.com/watch?v=mtQV5a-JEHo
+
 const ProductList = () => {
     let token = "";
     const [productsData, setProductsData] = useState([]);
@@ -37,7 +39,7 @@ const ProductList = () => {
     return(
         <div>
             <NavigationBar/>
-            <ul className="list">
+            {/* <div>
                 {productsData.map((product) => (
                     <Product
                         key={product.id}
@@ -47,7 +49,24 @@ const ProductList = () => {
                         desription = {product.desription}
                     ></Product>
                 ))}
-            </ul>
+            </div> */}
+            <div className="div-container">
+                <h2>Avalibale Products</h2>
+                <div className="row row-cols-2">
+                    {productsData.map((product) =>
+                        <div className="col">
+                            <Product
+                                key={product.id}
+                                id={product.id}
+                                name={product.name}
+                                price={product.price}
+                                desription = {product.desription}
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+
         </div>
     )
 }

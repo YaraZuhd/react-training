@@ -1,5 +1,10 @@
-import "./Product.css"
+import "./Product.css";
 import { useNavigate } from 'react-router-dom';
+import { FaCartPlus, FaEye  } from 'react-icons/fa';
+import logo from '../../photo1.jpg';
+import 'bootstrap/dist/css/bootstrap.css';
+
+
 
 const Product = (props) => {
   
@@ -9,16 +14,31 @@ const Product = (props) => {
     navigate(`/products/${props.id}`,{state:{id:`${props.id}`}});
   }
     return (
-        <li className="item">
-          <figure>
-            <blockquote>
-              <p>{props.name}</p>
-            </blockquote>
-            <figcaption>${props.price}</figcaption>
-          </figure>
-          <a className='btn' onClick={NavigateTo} href="">View Fullscreen</a>
-          {/* <Link className='btn' to={{pathname :`/products/${props.id}`,state:`${props.id}`}}>View Fullscreen</Link> */}
-        </li>
+          <div className="container" style={{display : 'flex'}}>
+                <div className="product-top">
+                  <img src={logo} alt="logo"/>
+                  <div className="overlay">
+                    <button type="button" className="btn btn-secondary" title="View Detailes">
+                      <FaEye></FaEye>
+                    </button>
+                    <button type="button" className="btn btn-secondary" title="Add To Cart">
+                      <FaCartPlus></FaCartPlus>
+                    </button>
+                  </div>
+                </div>
+                <div className="product-bottom text-center">
+                  <h3>{props.name}</h3>
+                  <h5>${props.price}</h5>
+            </div>
+          </div>
+        //   {/* <figure>
+        //     <blockquote>
+        //       <p>{props.name}</p>
+        //     </blockquote>
+        //     <figcaption>${props.price}</figcaption>
+        //   </figure> */}
+        //   {/* <a className='btn' onClick={NavigateTo} href="">View Fullscreen</a> */}
+        // {/* </li> */}
       );
 }
 
