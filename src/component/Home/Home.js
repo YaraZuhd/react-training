@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect } from "react";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import { useNavigate } from "react-router-dom";
 import "./Home.css"
@@ -11,7 +11,7 @@ const Home = () => {
         if(token === null){
            navigate('login')
         }
-    },[navigate]);
+    },[navigate,token]);
     if(token != null){
         return (
             <div className="container">
