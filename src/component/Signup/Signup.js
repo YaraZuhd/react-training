@@ -24,13 +24,13 @@ const options = [
     });
     const navigate = useNavigate();
     const [userInput, setUserInput] = useState({
-      userFirstName : "",
-      userLastName : "",
-      userEmail: "",
-      userPassword: "",
-      userPhone : "",
-      userAddress : "",
-      userGender : ""
+      firstname : "",
+      lastname : "",
+      email: "",
+      password: "",
+      phone : "",
+      address : "",
+      gender : ""
   });
 
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -39,7 +39,7 @@ const options = [
     event.preventDefault();
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
-        return {...prevState, userEmail: ''}
+        return {...prevState, email: ''}
       });
     }
     if (!event.target.value || event.target.value === '') {
@@ -51,7 +51,7 @@ const options = [
         return {...prevState, emailError: ""}
       });
       setUserInput((prevState) => {
-        return {...prevState, userEmail: event.target.value}
+        return {...prevState, email: event.target.value}
       });
     }  
   };
@@ -60,7 +60,7 @@ const options = [
     event.preventDefault();
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
-        return {...prevState, userPassword: ''}
+        return {...prevState, password: ''}
       });
     }
     if (!event.target.value || event.target.value === '') {
@@ -72,21 +72,21 @@ const options = [
         return {...prevState, passwordError: ""}
       });
       setUserInput((prevState) => {
-        return {...prevState, userPassword: event.target.value}
+        return {...prevState, password: event.target.value}
     })
     }  
   };
 
   const confirmPasswordChangeHandler = (event) =>{
     event.preventDefault();
-    console.log(event.target.value, userInput.userPassword);
+    // console.log(event.target.value, userInput.userPassword);
     if(event.target.value.length === 0){
       setErrorMessage((prevState) => {
         return {...prevState, confirmPasswordError : 'Confirm Password is required'}
       })
       setConfirmPassword('')
     }else{
-      if(userInput.userPassword === event.target.value){
+      if(userInput.password === event.target.value){
         setErrorMessage((prevState) => {
           return {...prevState, confirmPasswordError : ''}
         });
@@ -104,7 +104,7 @@ const options = [
     event.preventDefault();
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
-        return {...prevState, userFirstName: ''}
+        return {...prevState, firstname: ''}
       });
     }
     if (!event.target.value || event.target.value === '') {
@@ -116,7 +116,7 @@ const options = [
         return {...prevState, firstNameError: ""}
       });
       setUserInput((prevState) => {
-        return {...prevState, userFirstName: event.target.value}
+        return {...prevState, firstname: event.target.value}
       })
     }
   };
@@ -125,7 +125,7 @@ const options = [
     event.preventDefault();
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
-        return {...prevState, userLastName: ''}
+        return {...prevState, lastname: ''}
       });
     }
     if (!event.target.value || event.target.value === '') {
@@ -137,7 +137,7 @@ const options = [
         return {...prevState, lastNameError: ""}
       });
       setUserInput((prevState) => {
-        return {...prevState, userLastName: event.target.value}
+        return {...prevState, lastname: event.target.value}
     })
     }
     
@@ -148,7 +148,7 @@ const options = [
     console.log(event.target.value);
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
-        return {...prevState, userPhone: ''}
+        return {...prevState, phone: ''}
       });
     }
     if (!event.target.value || event.target.value === '') {
@@ -160,7 +160,7 @@ const options = [
         const value = event.target.value;
         const valid = regex.test(value);
         setUserInput((prevState) => {
-          return {...prevState, userPhone: event.target.value}
+          return {...prevState, phone: event.target.value}
         })
         if (!valid) {
           setErrorMessage((prevState) => {
@@ -176,7 +176,7 @@ const options = [
           return {...prevState, phoneError: ""}
         });
         setUserInput((prevState) => {
-          return {...prevState, userPhone: event.target.value}
+          return {...prevState, phone: event.target.value}
         })
       }
     }
@@ -186,7 +186,7 @@ const options = [
     event.preventDefault();
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
-        return {...prevState, userAddress: ''}
+        return {...prevState, address: ''}
       });
     }
     if (!event.target.value || event.target.value === '') {
@@ -198,13 +198,14 @@ const options = [
         return {...prevState, addressError: ""}
       });
       setUserInput((prevState) => {
-        return {...prevState, userAddress: event.target.value}
+        return {...prevState, address: event.target.value}
     })
     }
     
   };
   const genderChangeHandler = (event) => {
-    if(event.value === '' || !event.value){
+    console.log(event.value);
+    if((event.value === '' || !event.value) && userInput.gender == ''){
       setErrorMessage((prevState) => {
         return {...prevState, genderError: 'Gender is required'}
       });
@@ -212,19 +213,23 @@ const options = [
       setErrorMessage((prevState) => {
         return {...prevState, genderError: ""}
       });
-      setUserInput((prevState) => {
-        return {...prevState, userGender: event.value}
-    })
+      if (!(event.value === '' || !event.value)) {
+        setUserInput((prevState) => {
+          return {...prevState, gender: event.value}
+      })
+
+      }
     }
   };
 
   const createUser = async () => {
+    console.log(userInput);
     try {
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstname : userInput.userFirstName, lastname: userInput.userLastName, gender: userInput.userGender,
-            phone : userInput.userPhone, email: userInput.userEmail, password: userInput.userPassword , address: userInput.userAddress})
+          body: JSON.stringify({ firstname : userInput.firstname, lastname: userInput.lastname, gender: userInput.gender,
+            phone : userInput.phone, email: userInput.email, password: userInput.password , address: userInput.address})
       };
       const response = await fetch('http://localhost:3000/signup', requestOptions)
       if(response.status === 200 && response.ok){
@@ -248,15 +253,16 @@ const options = [
       setErrorState(error.message);
     }
     if(errorState === ""){
-      setUserInput({userFirstName: "", userLastName: "",userEmail: "", userPassword: "",userPhone: "", userAddress: "", userGender: ""});
+      setUserInput({firstname: "", lastname: "",email: "", password: "",phone: "", address: "", gender: ""});
+      setErrorMessage({firstNameError : '', lastNameError : '', genderError: '', phoneError : '', addressError : '',emailError :'', passwordError : '', confirmPasswordError : ''});
     }
   }
 
   const handleRegister = (event) => {
     event.preventDefault();
-    if(userInput.userFirstName === "" || userInput.userLastName === "" ||
-    userInput.userGender === "" || userInput.userPhone === "" ||
-    userInput.userEmail === "" || userInput.userPassword === "" ||userInput.userAddress === ""){
+    if(userInput.firstname === "" || userInput.lastname === "" ||
+    userInput.gender === "" || userInput.phone === "" ||
+    userInput.email === "" || userInput.password === "" ||userInput.address === ""){
       setErrorState("Please Enter Valid Information");
     }
     createUser();   
@@ -268,31 +274,32 @@ const options = [
           <h1>Sign Up</h1>
           <form>
               <input type={'text'} required placeholder={'First Name'} name={'firstName'} onBlur={firstNameChangeHandler}
-              value={userInput.userFirstName} onChange={firstNameChangeHandler} 
+              value={userInput.firstname} onChange={firstNameChangeHandler} 
               className={errorMessage.firstNameError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.firstNameError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.firstNameError}</small>}
               <input type={'text'} required ={true} placeholder={'Last Name'} name={'lastName'}
-              value={userInput.userLastName} onChange={lastNameChangeHandler} onBlur={lastNameChangeHandler}
+              value={userInput.lastname} onChange={lastNameChangeHandler} onBlur={lastNameChangeHandler}
               className={errorMessage.lastNameError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.lastNameError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.lastNameError}</small>}
              <Select
-                  defaultValue={userInput.userGender}
-                  placeholder={'Gender'} onBlur={genderChangeHandler}
+                  defaultValue={userInput.gender}
+                  placeholder={'Gender'} 
                   onChange={genderChangeHandler}
+                  onBlur = {genderChangeHandler}
                   options={options}
                   className = {errorMessage.genderError.length !== 0 ? 'select-error' : 'css-b62m3t-container'}
               />
               {errorMessage.genderError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.genderError}</small>}
               <input type={'text'} required ={true} placeholder={'Phone'} name={'phone'}
-              value={userInput.userPhone} onChange={phoneChangeHandler} onBlur={phoneChangeHandler}
+              value={userInput.phone} onChange={phoneChangeHandler} onBlur={phoneChangeHandler}
               className={errorMessage.phoneError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.phoneError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.phoneError}</small>}
               <input type={'email'} required ={true} placeholder={'Email'} name={'email'}
-              value={userInput.userEmail} onChange={emailChangeHandler} onBlur={emailChangeHandler}
+              value={userInput.email} onChange={emailChangeHandler} onBlur={emailChangeHandler}
               className={errorMessage.emailError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.emailError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.emailError}</small>}
               <input type={'password'} required ={true} placeholder={'Password'} name={'password'}
-              value={userInput.userPassword} onChange={passwordChangeHandler} onBlur={passwordChangeHandler}
+              value={userInput.password} onChange={passwordChangeHandler} onBlur={passwordChangeHandler}
               className={errorMessage.passwordError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.passwordError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.passwordError}</small>}
               <input type={'password'} required ={true} placeholder={'Confirm Password'} name={'confirmPassword'}
@@ -300,7 +307,7 @@ const options = [
               className={errorMessage.confirmPasswordError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.confirmPasswordError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.confirmPasswordError}</small>}
               <input type={'text'} required ={true} placeholder={'Address'} name={'address'}
-              value={userInput.userAddress} onChange={addressChangeHandler} onBlur={addressChangeHandler}
+              value={userInput.address} onChange={addressChangeHandler} onBlur={addressChangeHandler}
               className={errorMessage.addressError.length !== 0 ? 'error' : 'form-input'}/>
               {errorMessage.addressError.length !== 0 && <small style={{color : 'red'}}>{errorMessage.addressError}</small>}
               <button type="submit" onClick={handleRegister}>Sign Up</button>
