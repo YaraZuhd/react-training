@@ -3,7 +3,7 @@
         font-size: 30px !important;
     }
     .signup form {
-        gap : 15px !important;
+        /* gap : 15px !important; */
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -13,6 +13,11 @@
         margin: 20px !important;
      }
      
+}
+small{
+    width: 100%;
+    color: red;
+    font-size: 0.65rem !important;
 }
 
 .signup{
@@ -38,10 +43,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    /* gap: 20px; */
 }
 
-.signup form input:not([type="submit"]){
+.css-b62m3t-container{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.select-error{
+    width: 100%;
+    margin-top: 1rem;
+    border: 1px solid red;
+    border-radius: 4px;
+}
+
+.form-input{
     width: 100%;
     padding: 5px;
     border: 2px solid #000;
@@ -51,8 +68,24 @@
     border-right: 0px;
     border-radius: 5px;
     margin-bottom: 5px;
+    margin-top: 1rem;
     font-size: 0.85rem;
     color: #000;
+}
+
+.error{
+    width: 100%;
+    padding: 5px;
+    border: 2px solid red;
+    outline: none !important;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: red;
 }
 
 .signup form button {

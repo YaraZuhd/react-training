@@ -1,9 +1,16 @@
+@media only screen and  (max-width: 840px) {
+    a{
+        white-space: nowrap;
+        margin-left: -2px !important;
+    }
+}
+
 @media only screen and (max-width: 500px) {
     nav {
       width: 100% !important;
     }
     nav .home-link a{
-        margin-left: 5px !important;
+        margin-left: 10px !important;
         font-size: small !important;
         padding-left: 2px !important;
         white-space: nowrap;
@@ -14,7 +21,7 @@
         margin-right: 30px !important;
     }
 
-    nav div p{
+    nav div .welcoming{
         padding-right: 5px !important;
         font-size: small !important;
         white-space: nowrap;
@@ -22,13 +29,13 @@
 
     nav div .icon{
         font-size: smaller !important;
-        padding: 5px !important;
+        /* padding: 5px !important; */
     }
 
   }
 nav {
     position: relative;
-    height: 40px;
+    height: 60px;
     width: 100%;
     background-color: rgb(65, 64, 64);
     color : #fff;
@@ -55,9 +62,11 @@ nav div {
     gap: 20px;
 }
 
-nav div p {
+nav div .welcoming {
     font-size: 1rem;
     padding: 0px 10px;
+    color: white;
+    text-decoration: none;
 }
 
 .nav-items {
@@ -72,25 +81,27 @@ span, .nav-items {
 
 span:hover , .nav-items:hover , .nav-items:active {
     text-decoration: underline;
+    color: #fff;
 }
 
 .icon {
-    font-size: 0.99rem;
+    font-size: 1.2rem;
     border: 1px solid #fff;
     color : #000;
+    /* margin-left: -10px; */
     background-color: #fff;
-    padding: 10px 12px;
+    /* padding: 10px 12px; */
     border-radius: 50%;
 }
 
 .logout-btn{
     background-color : #ff0;
-    width:85px;
+    width:30px;
     height: 30px;
     color: #000;
     border: 3px solid rgb(245, 241, 241);
     border-radius: 15px;
-    transition: 0.3s linear;
+    transition: 0.3s linear;margin-left: -20px;
 }
 
 .logout-btn:hover{

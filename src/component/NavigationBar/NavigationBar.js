@@ -1,5 +1,5 @@
 import './NavigationBar.css'
-import { FaUser  } from 'react-icons/fa';
+import { FaUser, FaSignOutAlt  } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -30,9 +30,9 @@ const NavigationBar = () => {
                <Link to={"/cart"} className='nav-items'>Carts</Link>
             </div>
          }
-            <p>Welcome,  <span> {token ?  user.firstname : "Guset" } </span></p>
+            <a className='welcoming'>Welcome,  <span> {token ?  user.firstname : "Guset" } </span></a>
             {!token && <FaUser className='icon'/>}
-            {token && <button type='button' onClick={handleLogout} className='logout-btn'>Logout</button>}
+            {token && <button type='button' onClick={handleLogout} className='logout-btn'><FaSignOutAlt></FaSignOutAlt></button>}
          </div>
         </nav>
      );

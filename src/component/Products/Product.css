@@ -44,3 +44,33 @@
   .btn:hover{
     color: #000;
   }  */
+
+
+  h3{
+    font-weight: bolder;
+    font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: -180px !important;
+    margin-left: 10px;
+  }
+
+  h5{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: -120px !important;
+    color: rgb(48, 65, 97);
+  }
+
+  .view , .add{
+    margin-left: 2rem !important;
+    font-size: 15px !important;
+    background-color: rgba(194, 178, 178, 0.548) !important;
+    color: black !important;
+  }
+
+  .view:hover, .add:hover{
+   background-color: rgb(22, 18, 18) !important;
+   color: #fff !important;
+   cursor: pointer;
+  }

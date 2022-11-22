@@ -2,12 +2,7 @@ import "./Product.css";
 import { useNavigate } from 'react-router-dom';
 import { FaCartPlus, FaEye  } from 'react-icons/fa';
 import logo from '../../photo1.jpg';
-
-// import 'bootstrap/dist/css/bootstrap.css';
-// https://blog.logrocket.com/create-responsive-navbar-react-css/
-// https://codesandbox.io/s/react-responsive-nav-3n3lu?file=/src/components/Navbar.js
-// https://www.aleksandrhovhannisyan.com/blog/responsive-navbar-tutorial/
-// https://stackoverflow.com/questions/47524680/css-single-column-media-query
+// import 'bootstrap/dist/css/bootstrap.css'
 
 
 
@@ -19,21 +14,21 @@ const Product = (props) => {
     navigate(`/products/${props.id}`,{state:{id:`${props.id}`}});
   }
     return (
-          <div className="container" style={{display : 'flex'}}>
-                <div className="product-top">
+          <div style={{width : "100%"}}>
+                <div className="product-top column">
                   <img src={logo} alt="logo"/>
                   <div className="overlay">
-                    <button type="button" className="btn btn-secondary" title="View Detailes">
-                      <FaEye></FaEye>
+                    <button type="button" className="btn btn-secondary view" title="View Detailes">
+                      <FaEye onClick={NavigateTo}></FaEye>
                     </button>
-                    <button type="button" className="btn btn-secondary" title="Add To Cart">
+                    <button type="button" className="btn btn-secondary add" title="Add To Cart">
                       <FaCartPlus></FaCartPlus>
                     </button>
                   </div>
                 </div>
-                <div className="product-bottom text-center">
-                  <h3>{props.name}</h3>
-                  <h5>${props.price}</h5>
+                <div className="product-bottom text-center row">
+                  <h3 className="column">Name : {props.name}</h3>
+                  <h5>Price : ${props.price}</h5>
             </div>
           </div>
         //   {/* <figure>

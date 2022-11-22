@@ -2,9 +2,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import { useEffect, useState, useCallback } from 'react';
 import './productList.css'
 import Product from "./Product";
-
-
-// https://www.youtube.com/watch?v=mtQV5a-JEHo
+import 'bootstrap/dist/css/bootstrap.css';
 
 const ProductList = () => {
     let token = "";
@@ -38,23 +36,13 @@ const ProductList = () => {
     },[fetchProducts]);
     return(
         <div>
-            <NavigationBar/>
-            {/* <div>
-                {productsData.map((product) => (
-                    <Product
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        price={product.price}
-                        desription = {product.desription}
-                    ></Product>
-                ))}
-            </div> */}
+            <NavigationBar className="navigation"/>
+            <h2>Avalibale Products</h2>
             <div className="div-container">
-                <h2>Avalibale Products</h2>
+                
                 <div className="row row-cols-2">
                     {productsData.map((product) =>
-                        <div className="col">
+                        <div className="col" key={product.id}>
                             <Product
                                 key={product.id}
                                 id={product.id}

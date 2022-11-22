@@ -14,7 +14,7 @@ const Home = () => {
     },[navigate,token]);
     if(token != null){
         return (
-            <div className="container">
+            <div className="main-div">
               <NavigationBar/>
             </div>
         );
