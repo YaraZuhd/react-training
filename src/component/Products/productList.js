@@ -1,45 +1,48 @@
 import NavigationBar from "../NavigationBar/NavigationBar";
-import { useEffect, useState, useCallback } from 'react';
-import './productList.css'
+import { useEffect, useState, useCallback } from "react";
+import "./productList.css";
 import Product from "./Product";
-import 'bootstrap/dist/css/bootstrap.css';
+import "bootstrap/dist/css/bootstrap.css";
+import Navbar from "../NavResponsive/Navbar";
 
 const ProductList = () => {
-    let token = "";
-    const [productsData, setProductsData] = useState([]);
-    if(localStorage.getItem('token') != null){
-      token = localStorage.getItem('token');
+  let token = "";
+  const [productsData, setProductsData] = useState([]);
+  if (localStorage.getItem("token") != null) {
+    token = localStorage.getItem("token");
+  }
+
+  const fetchProducts = useCallback(async () => {
+    try {
+      const requestOptions = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      const response = await fetch(
+        `http://localhost:3000/products`,
+        requestOptions
+      );
+      if (response.status === 200 && response.ok) {
+        const data = await response.json();
+        setProductsData(data);
+      } else {
+        throw new Error("No Product Found");
+      }
+    } catch (error) {
+      console.log(error.message);
     }
- 
-    const fetchProducts =  useCallback(async () => {
-       try {
-           const requestOptions = {
-               headers: { 'Content-Type': 'application/json',
-               Authorization : `Bearer ${token}`
-               },
-           };
-           const response = await fetch(`http://localhost:3000/products`, requestOptions)
-           if(response.status === 200 && response.ok){
-               const data = await response.json();
-               setProductsData(data);
-           }
-           else {
-               throw new Error("No Product Found")
-           }
-        } catch(error) {
-           console.log(error.message);
-       }
-   },[token]);
- 
-    useEffect(()=>{
-        fetchProducts();
-    },[fetchProducts]);
-    return(
-        <div>
-            <NavigationBar className="navigation"/>
-            <h2>Avalibale Products</h2>
-            <div className="div-container">
-                
+  }, [token]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+  return (
+    <div>
+      <Navbar />
+      <h2>Avalibale Products</h2>
+            <div className="div-container"> 
                 <div className="row row-cols-2">
                     {productsData.map((product) =>
                         <div className="col" key={product.id}>
@@ -53,10 +56,10 @@ const ProductList = () => {
                         </div>
                     )}
                 </div>
+                
             </div>
-
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 export default ProductList;

@@ -1,0 +1,145 @@
+@media only screen and  (max-width: 840px) {
+    .brand-name{
+        white-space: nowrap;
+        margin-left: 5px !important;
+    }
+}
+.navigation {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    padding: 0.5rem 0rem;
+    background-color: rgb(65, 64, 64);
+    color:#fff;
+    box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+  }
+  
+  .brand-name {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.3rem;
+    margin-left: 1.2rem;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .brand-name:hover, .brand-name:active{
+    color: #fff;
+  }
+  
+  .navigation-menu {
+    margin-left: auto;
+  }
+  
+  .navigation-menu ul {
+    display: flex;
+    padding: 0;
+    margin-bottom: 0px !important;
+  }
+  
+  .navigation-menu li {
+    list-style-type: none;
+    margin: 0 1rem;
+  }
+
+  .nav-item{
+    color: #ff0;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .nav-item:hover, .nav-item:active{
+    text-decoration: underline;
+    color: #fff;
+  }
+  
+  .navigation-menu li a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+  
+  .menu-bar {
+    border: 0;
+    height: 40px;
+    width: 40px;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: #ff0;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    display: none;
+  }
+  
+  .menu-bar:hover {
+    background-color: rgba(255, 255, 0, 0.36);
+  }
+
+ .logout-btn{
+    background-color : #ff0;
+    width:50px;
+    color: #000;
+    border: 3px solid rgb(245, 241, 241);
+    border-radius: 15px;
+    transition: 0.3s linear;
+}
+
+.logout-btn:hover{
+    background-color: rgba(211, 211, 32, 0.836);
+    color: #fff;
+}
+  
+  @media screen and (max-width: 550px) {
+    .menu-bar {
+      display: block;
+      background-color: #87877e;
+    }
+    .menu-bar:hover{
+        background-color: #87877e;
+    }
+  
+    .navigation-menu ul {
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 60px);
+      background-color: #808080;
+      border-top: 1px solid black;
+      display: none;
+    }
+  
+    .navigation-menu li {
+      text-align: center;
+      margin: 0;
+      height: 60px;
+      padding: 5px;
+      box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+    }
+  
+    .navigation-menu li a {
+      color: black;
+      width: 100%;
+    }
+  
+    .navigation-menu li:hover {
+      background-color: #eee;
+    }
+  
+    .navigation-menu.expanded ul {
+      display: block;
+    }
+
+    .logout-btn{
+        margin-top: .5rem;
+    }
+
+  }

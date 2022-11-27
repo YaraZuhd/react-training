@@ -2,6 +2,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 //import jwt_decode from 'jwt-decode';
 import { useEffect, useState, useCallback } from 'react';
 import "./cart.css"
+import Navbar from "../NavResponsive/Navbar";
 const Cart = () => {
 
     const [cart, setCart] = useState({});
@@ -43,7 +44,7 @@ const Cart = () => {
 
    return(
     <div>
-        <NavigationBar/>
+        <Navbar/>
         <div className="cart">
             <div className="side-div"></div>
             <figure className="cart-info">

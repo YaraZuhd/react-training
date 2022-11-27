@@ -205,7 +205,7 @@ const options = [
   };
   const genderChangeHandler = (event) => {
     console.log(event.value);
-    if((event.value === '' || !event.value) && userInput.gender == ''){
+    if((event.value === '' || !event.value) && userInput.gender === ''){
       setErrorMessage((prevState) => {
         return {...prevState, genderError: 'Gender is required'}
       });

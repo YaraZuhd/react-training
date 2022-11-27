@@ -69,7 +69,7 @@ nav div .welcoming {
     text-decoration: none;
 }
 
-.nav-items {
+/* .nav-items {
     cursor: pointer;
 }
 
@@ -82,7 +82,7 @@ span, .nav-items {
 span:hover , .nav-items:hover , .nav-items:active {
     text-decoration: underline;
     color: #fff;
-}
+} */
 
 .icon {
     font-size: 1.2rem;
@@ -94,7 +94,7 @@ span:hover , .nav-items:hover , .nav-items:active {
     border-radius: 50%;
 }
 
-.logout-btn{
+/* .logout-btn{
     background-color : #ff0;
     width:30px;
     height: 30px;
@@ -107,4 +107,4 @@ span:hover , .nav-items:hover , .nav-items:active {
 .logout-btn:hover{
     background-color: rgba(211, 211, 32, 0.836);
     color: #fff;
-}
+} */

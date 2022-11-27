@@ -1,8 +1,8 @@
 import React from 'react'
-import NavigationBar from "../NavigationBar/NavigationBar";
 import {useLocation} from 'react-router-dom';
 import "./HighlightedProduct.css"
 import { useEffect, useState, useCallback } from 'react';
+import Navbar from '../NavResponsive/Navbar';
 
 
 const HighlightedProduct = (props) =>{
@@ -43,7 +43,7 @@ const HighlightedProduct = (props) =>{
 
     return (
         <div>
-            <NavigationBar/>
+            <Navbar/>
             {(product === {}) && <p>Loadding ... </p>}
             {product!== {} && <div>
                 <figure className="product">
