@@ -1,9 +1,10 @@
-import NavigationBar from "../NavigationBar/NavigationBar";
 import { useEffect, useState, useCallback } from "react";
 import "./productList.css";
 import Product from "./Product";
+import { Grid, Divider } from 'semantic-ui-react';
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "../NavResponsive/Navbar";
+import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   let token = "";
@@ -39,9 +40,15 @@ const ProductList = () => {
     fetchProducts();
   }, [fetchProducts]);
   return (
-    <div>
+    <>
       <Navbar />
-      <h2>Avalibale Products</h2>
+      <Divider horizontal>Shop All Proudcts</Divider>
+        <Grid stackable columns='equal' centered>
+            {productsData.map(product => <Grid.Column width={5} key={product.id}>
+                <ProductCard product={product} />
+                </Grid.Column>)}
+        </Grid>
+      {/* <h2>Avalibale Products</h2>
             <div className="div-container"> 
                 <div className="row row-cols-2">
                     {productsData.map((product) =>
@@ -57,8 +64,8 @@ const ProductList = () => {
                     )}
                 </div>
                 
-            </div>
-    </div>
+            </div> */}
+    </>
   );
 };
 

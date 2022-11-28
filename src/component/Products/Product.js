@@ -2,7 +2,6 @@ import "./Product.css";
 import { useNavigate } from 'react-router-dom';
 import { FaCartPlus, FaEye  } from 'react-icons/fa';
 import logo from '../../photo1.jpg';
-// import 'bootstrap/dist/css/bootstrap.css'
 
 
 
