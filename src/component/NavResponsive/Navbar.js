@@ -3,8 +3,10 @@ import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+// import { CBadge, CButton } from '@coreui/react';
 
-const Navbar = () => {
+
+const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   const navigate = useNavigate();
@@ -12,12 +14,13 @@ const Navbar = () => {
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
-        Onkine Shopping
+        Online Shopping
       </a>
       <button
         className="menu-bar"
         type="button"
         onClick={() => {
+          props.toggleCallback(!isNavExpanded);
           setIsNavExpanded(!isNavExpanded);
         }}
       >
@@ -33,7 +36,12 @@ const Navbar = () => {
             <Link to={"/products"} className={'nav-item'}>Products</Link>
           </li>
           <li>
-            <Link to={"/cart"} className={'nav-item'}>Cart</Link>
+            <Link to={"/cart"} className={'nav-item'}>
+              Cart
+            {/* <CButton color="primary">
+              Cart <CBadge color="secondary">4</CBadge>
+            </CButton> */}
+            </Link>
           </li>
           <li>
             <button
