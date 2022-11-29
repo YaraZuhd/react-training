@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css"
 import Navbar from "../NavResponsive/Navbar";
 
+// https://coreui.io/react/docs/components/badge/
 const Home = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token')

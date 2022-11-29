@@ -1,16 +1,9 @@
-import NavigationBar from "../NavigationBar/NavigationBar";
 import { useEffect, useState, useCallback } from "react";
 import "./productList.css";
-import Product from "./Product";
+import { Grid, Divider } from 'semantic-ui-react';
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "../NavResponsive/Navbar";
-import { Grid } from 'semantic-ui-react';
-
-
-
-// grid view for product 
-// https://commercejs.com/docs/community/listing-products-using-react-js/
-// https://commercejs.com/docs/community/creating-a-cart-with-react-js/
+import ProductCard from "./ProductCard";
 
 const ProductList = () => {
   let token = "";
@@ -47,26 +40,32 @@ const ProductList = () => {
     fetchProducts();
   }, [fetchProducts]);
   return (
-    <div>
-        <Navbar />
-        <h2>Avalibale Products</h2>
-        <div className="div-container"> 
-            <div className="row row-cols-2">
-                {productsData.map((product) =>
-                    <div className="col" key={product.id}>
-                        <Product
-                            key={product.id}
-                            id={product.id}
-                            name={product.name}
-                            price={product.price}
-                            desription = {product.desription}
-                        />
-                    </div>
-                )}
-            </div>
+    <>
+      <Navbar />
+      <Divider horizontal>Shop All Proudcts</Divider>
+        <Grid stackable columns='equal' centered>
+            {productsData.map(product => <Grid.Column width={5} key={product.id}>
+                <ProductCard product={product} />
+                </Grid.Column>)}
+        </Grid>
+      {/* <h2>Avalibale Products</h2>
+            <div className="div-container"> 
+                <div className="row row-cols-2">
+                    {productsData.map((product) =>
+                        <div className="col" key={product.id}>
+                            <Product
+                                key={product.id}
+                                id={product.id}
+                                name={product.name}
+                                price={product.price}
+                                desription = {product.desription}
+                            />
+                        </div>
+                    )}
+                </div>
                 
-        </div>
-    </div>
+            </div> */}
+    </>
   );
 };
 
