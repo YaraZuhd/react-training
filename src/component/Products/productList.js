@@ -4,10 +4,18 @@ import "./productList.css";
 import Product from "./Product";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "../NavResponsive/Navbar";
+import { Grid } from 'semantic-ui-react';
+
+
+
+// grid view for product 
+// https://commercejs.com/docs/community/listing-products-using-react-js/
+// https://commercejs.com/docs/community/creating-a-cart-with-react-js/
 
 const ProductList = () => {
   let token = "";
   const [productsData, setProductsData] = useState([]);
+
   if (localStorage.getItem("token") != null) {
     token = localStorage.getItem("token");
   }
@@ -40,24 +48,24 @@ const ProductList = () => {
   }, [fetchProducts]);
   return (
     <div>
-      <Navbar />
-      <h2>Avalibale Products</h2>
-            <div className="div-container"> 
-                <div className="row row-cols-2">
-                    {productsData.map((product) =>
-                        <div className="col" key={product.id}>
-                            <Product
-                                key={product.id}
-                                id={product.id}
-                                name={product.name}
-                                price={product.price}
-                                desription = {product.desription}
-                            />
-                        </div>
-                    )}
-                </div>
-                
+        <Navbar />
+        <h2>Avalibale Products</h2>
+        <div className="div-container"> 
+            <div className="row row-cols-2">
+                {productsData.map((product) =>
+                    <div className="col" key={product.id}>
+                        <Product
+                            key={product.id}
+                            id={product.id}
+                            name={product.name}
+                            price={product.price}
+                            desription = {product.desription}
+                        />
+                    </div>
+                )}
             </div>
+                
+        </div>
     </div>
   );
 };
