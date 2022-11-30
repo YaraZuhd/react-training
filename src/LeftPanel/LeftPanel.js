@@ -8,15 +8,14 @@ const LeftPanel = () => {
     return (
         <div className='main-div'>
              <Menu vertical size='massive'>
-                {/* <Menu.Item>
-                    <Image size='tiny' src={logo} />
-                </Menu.Item> */}
+                <Menu.Item>
+                    <Image size='medium' src={logo} />
+                </Menu.Item>
                 <Menu.Item>
                     <Menu.Header>Phones</Menu.Header>
-
                     <Menu.Menu>
-                        <Menu.Item name='iphone' />
-                        <Menu.Item name='samsung' />
+                        <Menu.Item name='iphone'/>
+                        <Menu.Item name='Samsung' />
                     </Menu.Menu>
                 </Menu.Item>
                 <Menu.Item>
@@ -25,7 +24,7 @@ const LeftPanel = () => {
                     <Menu.Menu>
                         <Menu.Item name='Mercedes' />
                         <Menu.Item name='BMW' />
-                        <Menu.Item name='Hundai' />
+                        <Menu.Item name='Hyundai' />
                     </Menu.Menu>
                 </Menu.Item>
             </Menu>

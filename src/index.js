@@ -1,6 +1,7 @@
 import React from 'react';
 import PageNotFound from "../src/Pages/PageNotFound";
 import './styles/index.css';
+import 'semantic-ui-css/semantic.min.css'
 import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,

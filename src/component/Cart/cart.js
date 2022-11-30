@@ -1,8 +1,9 @@
-import NavigationBar from "../NavigationBar/NavigationBar";
-//import jwt_decode from 'jwt-decode';
+import React from "react";
 import { useEffect, useState, useCallback } from "react";
 import "./cart.css";
 import Navbar from "../NavResponsive/Navbar";
+import { Button, Modal, Image, Header, Item } from "semantic-ui-react";
+
 const Cart = () => {
   const [cart, setCart] = useState({});
   const [userData, setUserData] = useState({});
@@ -33,6 +34,8 @@ const Cart = () => {
       );
       if (response.status === 200 && response.ok) {
         const data = await response.json();
+        console.log(data);
+        localStorage.setItem("cart", JSON.stringify(data));
         setCart(data);
       } else {
         throw new Error("No Cart Found");
@@ -50,26 +53,15 @@ const Cart = () => {
   return (
     <div>
       <Navbar toggleCallback={handelCallback} />
-      <h2>Cart</h2>
-      {/* {!toggle && (
-        <div className="cart">
-          <div className="side-div"></div>
-          <figure className="cart-info">
-            <p className="title">
-              <span className="username">{userData.firstname}</span> Cart
-            </p>
-            <figcaption className="desription">
-              Total Quentity : {cart.quentity}
-            </figcaption>
-            <figcaption className="price">
-              Total Price : {cart.price}
-            </figcaption>
-            <figcaption className="status">
-              Cart Status : {cart.status}
-            </figcaption>
-          </figure>
-        </div>
-      )} */}
+      {/* <>
+        <Modal.Header>Shope Now To Make The Cart Fully</Modal.Header>
+        <Modal.Content image>
+          <Modal.Description>
+            <Header>Your Cart is currently Empty</Header>
+            <p>It would make you very happy if you added an item to the cart</p>
+          </Modal.Description>
+        </Modal.Content>
+      </> */}
     </div>
   );
 };

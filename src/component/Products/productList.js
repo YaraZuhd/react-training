@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 import "./productList.css";
-import { Grid } from 'semantic-ui-react';
+import { Grid,Divider } from 'semantic-ui-react';
 import "bootstrap/dist/css/bootstrap.css";
 import ProductCard from "./ProductCard";
 
-const ProductList = (props) => {
+const ProductList = () => {
   let token = "";
   const [productsData, setProductsData] = useState([]);
 
@@ -40,10 +40,11 @@ const ProductList = (props) => {
   }, [fetchProducts]);
   return (
     <>
-        <div className="separator">Shop All Proudcts</div>
+        {/* <div className="separator">Shop All Proudcts</div> */}
+        <Divider horizontal>Shop All Proudcts</Divider>
         <Grid stackable columns='equal' centered>
             {productsData.map(product => <Grid.Column width={5} key={product.id}>
-                <ProductCard product={product} addToCart={props.addToCart}  />
+                <ProductCard product={product}/>
                 </Grid.Column>)}
         </Grid>
       {/* <h2>Avalibale Products</h2>

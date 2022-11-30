@@ -1,4 +1,20 @@
 .card{
+    text-align: center !important;
+}
+
+.quanity-group{
+    display: flex;
+    gap: 10px;
+}
+
+.ui.input>input {
     text-align: center;
-    padding: 2px;
+}
+
+.inputQ{
+    width: 30%;
+}
+
+.add-button{
+    margin-top: 5px !important;
 }

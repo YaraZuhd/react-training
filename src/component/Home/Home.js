@@ -6,7 +6,7 @@ import Navbar from "../NavResponsive/Navbar";
 // -
 const Home = () => {
     const navigate = useNavigate();
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
 
     useEffect(()=>{
         if(token === null){

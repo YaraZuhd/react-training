@@ -15,6 +15,11 @@ const Login = () => {
         userEmail: "",
         userPassword: "",
     });
+
+    function isValidEmail(email) {
+      return /\S+@\S+\.\S+/.test(email);
+    }
+
     const emailChangeHandler = (event) => {
         event.preventDefault();
         if(event.target.value.length === 0){
@@ -22,7 +27,11 @@ const Login = () => {
             return {...prevState, userEmail: ''}
           });
         }
-        if (!event.target.value || event.target.value === '') {
+        console.log(isValidEmail(event.target.value))
+        if(!isValidEmail(event.target.value)){
+          errorMessage.emailError = 'Invalid Email'
+        }
+        if (!event.target.value || event.target.value === ''  ) {
           setErrorMessage((prevState) => {
             return {...prevState, emailError: 'Email is required'}
           });
@@ -57,6 +66,31 @@ const Login = () => {
         }  
     };
 
+    const fetchCart = async (token) => {
+      try {
+        const requestOptions = {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        };
+        const response = await fetch(
+          `http://localhost:3000/carts/me`,
+          requestOptions
+        );
+        if (response.status === 200 && response.ok) {
+          const data = await response.json();
+          console.log(data);
+          localStorage.setItem('cart',JSON.stringify(data));
+        } else {
+          throw new Error("No Cart Found");
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    
+
 
     const loginUser = async () => {
         try {
@@ -71,17 +105,24 @@ const Login = () => {
                 console.log(data);
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
+                fetchCart(data.token)
                 setState({loggedIn: true});
                 setUserInput({userEmail: "", userPassword: ""});
                 setErrorState("");
                 navigate('/');
-            }
-            else {
-                errorMessage.emailError = "Email is required";
+            }else {
+              if(userInput.userEmail.length > 0 && userInput.userPassword.length ===0){
                 errorMessage.passwordError = "Password is required";
+              }else if(userInput.userEmail.length === 0 && userInput.userPassword.length >0){
+                 errorMessage.emailError = "Email is required";
+              }else if (userInput.userEmail.length >0 && userInput.userPassword.length >0){
+                  // errorState ='Enter Valid Data';
+                  errorMessage.passwordError = "Password is required";
+                  errorMessage.emailError = "Email is required";
+              }  
             }
          } catch(error) {
-            console.log(error.message);
+            console.log(error);
             setErrorState("Invalid Information");
         }
     };
@@ -89,7 +130,14 @@ const Login = () => {
     const handleLogin = (event) => {
         event.preventDefault();
         if(userInput.userEmail === "" || userInput.userPassword === ""){
-            setErrorState("Email And Password Are Required");
+          setErrorMessage((prevState) => {
+            return {...prevState, emailError: 'Email is required'}
+          });
+          setErrorMessage((prevState) => {
+            return {...prevState, passwordError: 'Password is required'}
+          });
+          setErrorState("Email And Password Are Required");
+            
         }else{
             loginUser(setUserInput);
         }

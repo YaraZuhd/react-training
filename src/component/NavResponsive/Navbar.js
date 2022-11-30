@@ -2,14 +2,15 @@ import React from "react";
 import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
+import { MDBBadge, MDBIcon } from 'mdb-react-ui-kit';
 import { Link, useNavigate } from "react-router-dom";
-// import { CBadge, CButton } from '@coreui/react';
 
 
 const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-
   const navigate = useNavigate();
+
+  let cart = JSON.parse(localStorage.getItem('cart'));
 
   return (
     <nav className="navigation">
@@ -36,12 +37,18 @@ const Navbar = (props) => {
             <Link to={"/products"} className={'nav-item'}>Products</Link>
           </li>
           <li>
-            <Link to={"/cart"} className={'nav-item'}>
-              Cart
-            {/* <CButton color="primary">
-              Cart <CBadge color="secondary">4</CBadge>
-            </CButton> */}
+            {cart.items.length > 0 && (
+              <Link to={"/cart"} className={'nav-item'}>
+               Cart
+               <MDBIcon fas icon='envelope' size='lg'/>
+               <MDBBadge color='danger' notification pill style={{marginLeft:'3px'}}>{cart.items.length}</MDBBadge>
+              </Link>
+            )}
+            {cart.items.length === 0 && (
+              <Link to={"/cart"} className={'nav-item'}>
+                Cart
             </Link>
+            )}
           </li>
           <li>
             <button
@@ -50,6 +57,7 @@ const Navbar = (props) => {
               onClick={() => {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
+                localStorage.removeItem("cart");
                 navigate("/login");
               }}
             >
