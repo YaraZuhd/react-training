@@ -13,15 +13,15 @@ const ProductCard = (props) => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
               },
-              body: JSON.stringify({ items : [{id: productInfo.id, quantity: +quantityNumber}]}),
+              body: JSON.stringify({ items : [{id: productInfo.id, quantity: +quantityNumber, productName : productInfo.name}]}),
             };
             const response = await fetch(
               `http://localhost:3000/carts/add-product-to-cart`,
               requestOptions
             );
-            console.log(requestOptions);
             if (response.status === 200 && response.ok) {
               const data = await response.json();
+              console.log(data)
               localStorage.removeItem('cart');
               localStorage.setItem('cart', JSON.stringify(data));
             } else {
@@ -37,7 +37,6 @@ const ProductCard = (props) => {
         if(itemQuantity === 0 || itemQuantity < 0){
             alert('the quantity must be greater than 0');
         }else{
-          console.log(props.product.id, itemQuantity)
           addProductToCart(props.product, itemQuantity)
         }
     }

@@ -26,6 +26,7 @@ const ProductList = () => {
       );
       if (response.status === 200 && response.ok) {
         const data = await response.json();
+        localStorage.setItem('products', JSON.stringify(data));
         setProductsData(data);
       } else {
         throw new Error("No Product Found");
@@ -40,30 +41,12 @@ const ProductList = () => {
   }, [fetchProducts]);
   return (
     <>
-        {/* <div className="separator">Shop All Proudcts</div> */}
         <Divider horizontal>Shop All Proudcts</Divider>
         <Grid stackable columns='equal' centered>
             {productsData.map(product => <Grid.Column width={5} key={product.id}>
                 <ProductCard product={product}/>
                 </Grid.Column>)}
         </Grid>
-      {/* <h2>Avalibale Products</h2>
-            <div className="div-container"> 
-                <div className="row row-cols-2">
-                    {productsData.map((product) =>
-                        <div className="col" key={product.id}>
-                            <Product
-                                key={product.id}
-                                id={product.id}
-                                name={product.name}
-                                price={product.price}
-                                desription = {product.desription}
-                            />
-                        </div>
-                    )}
-                </div>
-                
-            </div> */}
     </>
   );
 };

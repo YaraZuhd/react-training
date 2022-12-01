@@ -22,15 +22,17 @@ const Login = () => {
 
     const emailChangeHandler = (event) => {
         event.preventDefault();
+        if(!isValidEmail(event.target.value)){
+          setErrorMessage((prevState) => {
+            return {...prevState, emailError: 'Invalid Email'}
+          });
+        }
         if(event.target.value.length === 0){
           setUserInput((prevState) => {
             return {...prevState, userEmail: ''}
           });
         }
-        console.log(isValidEmail(event.target.value))
-        if(!isValidEmail(event.target.value)){
-          errorMessage.emailError = 'Invalid Email'
-        }
+      
         if (!event.target.value || event.target.value === ''  ) {
           setErrorMessage((prevState) => {
             return {...prevState, emailError: 'Email is required'}
@@ -99,10 +101,9 @@ const Login = () => {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: userInput.userEmail, password: userInput.userPassword })
             };
-            const response = await fetch('http://localhost:3000/login', requestOptions)
+            const response = await fetch('http://localhost:3000/login', requestOptions);
             if(response.status === 200 && response.ok){
                 const data = await response.json();
-                console.log(data);
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
                 fetchCart(data.token)
@@ -110,7 +111,15 @@ const Login = () => {
                 setUserInput({userEmail: "", userPassword: ""});
                 setErrorState("");
                 navigate('/');
-            }else {
+            }else if(response.status === 404 && !response.ok){
+              setErrorMessage((prevState) => {
+                return {...prevState, emailError: 'Email is Invalid'}
+              });
+              setErrorMessage((prevState) => {
+                return {...prevState, passwordError: 'Password is Invalid'}
+              });
+            }
+            else {
               if(userInput.userEmail.length > 0 && userInput.userPassword.length ===0){
                 errorMessage.passwordError = "Password is required";
               }else if(userInput.userEmail.length === 0 && userInput.userPassword.length >0){

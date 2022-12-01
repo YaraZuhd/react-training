@@ -79,7 +79,6 @@ const options = [
 
   const confirmPasswordChangeHandler = (event) =>{
     event.preventDefault();
-    // console.log(event.target.value, userInput.userPassword);
     if(event.target.value.length === 0){
       setErrorMessage((prevState) => {
         return {...prevState, confirmPasswordError : 'Confirm Password is required'}
@@ -145,7 +144,6 @@ const options = [
 
   const phoneChangeHandler = (event) => {
     event.preventDefault();
-    console.log(event.target.value);
     if(event.target.value.length === 0){
       setUserInput((prevState) => {
         return {...prevState, phone: ''}
@@ -204,7 +202,6 @@ const options = [
     
   };
   const genderChangeHandler = (event) => {
-    console.log(event.value);
     if((event.value === '' || !event.value) && userInput.gender === ''){
       setErrorMessage((prevState) => {
         return {...prevState, genderError: 'Gender is required'}
@@ -223,7 +220,6 @@ const options = [
   };
 
   const createUser = async () => {
-    console.log(userInput);
     try {
       const requestOptions = {
           method: 'POST',
@@ -237,7 +233,6 @@ const options = [
       }
       else {
         const error = await  response.text();
-        console.log(error);
         errorMessage.firstNameError = "First Name is required";
         errorMessage.lastNameError = "Last Name is required";
         errorMessage.genderError = "Gender is required";

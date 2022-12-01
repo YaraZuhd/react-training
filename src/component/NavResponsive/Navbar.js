@@ -12,6 +12,10 @@ const Navbar = (props) => {
 
   let cart = JSON.parse(localStorage.getItem('cart'));
 
+  const NavigateTo = () =>{
+    navigate(`/cart`,{state:{cart:`${cart}`}});
+  }
+
   return (
     <nav className="navigation">
       <a href="/" className="brand-name">
@@ -37,17 +41,26 @@ const Navbar = (props) => {
             <Link to={"/products"} className={'nav-item'}>Products</Link>
           </li>
           <li>
-            {cart.items.length > 0 && (
+            {(cart !== null && cart.items.length > 0) && (
+              // <a className={'nav-item'} onClick={NavigateTo} href="">Cart
+              // <MDBIcon fas icon='envelope' size='lg'/>
+              //  <MDBBadge color='danger' notification pill style={{marginLeft:'3px'}}>{cart.items.length}</MDBBadge>
+              // </a>
               <Link to={"/cart"} className={'nav-item'}>
                Cart
                <MDBIcon fas icon='envelope' size='lg'/>
                <MDBBadge color='danger' notification pill style={{marginLeft:'3px'}}>{cart.items.length}</MDBBadge>
               </Link>
             )}
-            {cart.items.length === 0 && (
+                {(cart !== null && cart.items.length === 0) && (
+                  <Link to={"/cart"} className={'nav-item'}>
+                   Cart
+                  </Link>
+            )}
+            {cart === null && (
               <Link to={"/cart"} className={'nav-item'}>
                 Cart
-            </Link>
+              </Link>
             )}
           </li>
           <li>

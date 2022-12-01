@@ -12,7 +12,6 @@ const ProductContainer = () => {
 
   const [toggle, setToggle] = useState(false);
 
-  console.log(JSON.parse(localStorage.getItem('cart')).items.length);
 
 
 
