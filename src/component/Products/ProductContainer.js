@@ -2,18 +2,13 @@ import "./ProductContainer.css";
 import { Grid } from "semantic-ui-react";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "../NavResponsive/Navbar";
-import LeftPanel from "../../LeftPanel/LeftPanel";
+import LeftPanel from "../LeftPanel/LeftPanel";
 import ProductList from "./productList";
 import { useState } from "react";
-
-// https://github.com/kingmoc/adding-products-cart-cjs-react/blob/master/src/App.js
 
 const ProductContainer = () => {
 
   const [toggle, setToggle] = useState(false);
-
-
-
 
   const handelCallback = (childData) => {
     setToggle(childData);

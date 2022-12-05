@@ -5,6 +5,8 @@ import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
 const ProductCard = (props) => {
     const [itemQuantity, setitemQuantity] = useState(1);
 
+   
+
     const addProductToCart = async (productInfo, quantityNumber) => {
         try {
             const requestOptions = {
@@ -21,8 +23,7 @@ const ProductCard = (props) => {
             );
             if (response.status === 200 && response.ok) {
               const data = await response.json();
-              console.log(data)
-              localStorage.removeItem('cart');
+              localStorage.removeItem('cart');                       
               localStorage.setItem('cart', JSON.stringify(data));
             } else {
               throw new Error("No Found");
@@ -78,6 +79,9 @@ const ProductCard = (props) => {
             </Card.Content>
         </Card>
     );
+
+
 };
+
 
 export default ProductCard;

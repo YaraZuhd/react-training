@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./Home.css"
 import Navbar from "../NavResponsive/Navbar";
 
-// -
 const Home = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const cart = JSON.parse(localStorage.getItem('cart'));
 
     useEffect(()=>{
         if(token === null){

@@ -30,14 +30,6 @@ const Product = (props) => {
                   <h5>Price : ${props.price}</h5>
             </div>
           </div>
-        //   {/* <figure>
-        //     <blockquote>
-        //       <p>{props.name}</p>
-        //     </blockquote>
-        //     <figcaption>${props.price}</figcaption>
-        //   </figure> */}
-        //   {/* <a className='btn' onClick={NavigateTo} href="">View Fullscreen</a> */}
-        // {/* </li> */}
       );
 }
 

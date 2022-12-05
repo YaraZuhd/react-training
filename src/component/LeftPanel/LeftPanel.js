@@ -1,7 +1,7 @@
 import React from 'react';
 import './LeftPanel.css';
 import { Menu, Image } from 'semantic-ui-react';
-import logo from '../img/logo.png'
+import logo from '../../img/logo.png'
 
 
 const LeftPanel = () => {
