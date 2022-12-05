@@ -1,7 +1,67 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { Item, Header, Button, Icon, Input } from 'semantic-ui-react';
 
 const CartItems = (props) => {
+
+    const [itemQuantity , setItemQuantity] = useState(props.item.quantity);
+    
+    const updateCartItem = useCallback(async (productId,  productInfo, quantity) => {
+        try {
+          const requestOptions = {
+            method :'PUT',
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({items : [{id : productInfo.id, cID : productInfo.cID,
+                 productName: productInfo.productName, productId : productInfo.productId,
+                 newQuantity : quantity , price : productInfo.price, oldQuantity:productInfo.quantity
+                }]}),
+          };
+          const response = await fetch(
+            `http://localhost:3000/carts/update-cart-item/${productId}`,
+            requestOptions
+          );
+          console.log(response);
+          if (response.status === 200 && response.ok) {
+            const data = await response.json();
+            localStorage.removeItem('cart');
+            localStorage.setItem("cart", JSON.stringify(data));
+          } else {
+            throw new Error("No Cart Found");
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      }, [localStorage.getItem('token')]);
+
+
+    const deleteItemFromCart = useCallback(async (productId) => {
+        try {
+          const requestOptions = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            method :'DELETE'
+          };
+          const response = await fetch(
+            `http://localhost:3000/carts/delete-cart-item/${productId}`,
+            requestOptions
+          );
+          if (response.status === 200 && response.ok) {
+            const data = await response.json();
+            console.log(data);
+            localStorage.removeItem('cart');
+            localStorage.setItem("cart", JSON.stringify(data));
+          } else {
+            throw new Error("No Cart Found");
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+      }, [localStorage.getItem('token')]);
+
     return (
         <>
             <Item.Content verticalAlign='middle'>
@@ -15,22 +75,28 @@ const CartItems = (props) => {
                         negative 
                         className='quan-buttons' 
                         onClick={() => {
-                            let newQuanity = props.item.quantity - 1
-                            //helpFnc.subtractQuanity(props.item.id, newQuanity)
+                            setItemQuantity(itemQuantity -1 );
+                            let newQuantity = itemQuantity -1;
+                            if(newQuantity === 0){
+                               deleteItemFromCart(props.item.productId);
+                            }else{
+                                updateCartItem(props.item.productId, props.item, newQuantity);
+                            }
                         }}
                     > 
                         <Icon name='minus' /> 
                     </Button>
                     <Input 
                         className='input-quanity'
-                        value={props.item.quantity} 
+                        value={itemQuantity} 
                     />
                     <Button
                         positive 
                         className='quan-buttons'
                         onClick={() => {
-                            let newQuanity = props.item.quantity + 1
-                            //helpFnc.addQaunity(props.item.id, newQuanity)
+                            setItemQuantity(itemQuantity  +1 );
+                            let newQuantity = itemQuantity  + 1;
+                            updateCartItem(props.item.productId, props.item, newQuantity)
                         }}
                     > 
                         <Icon name='plus' /> 

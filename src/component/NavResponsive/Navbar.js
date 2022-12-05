@@ -11,7 +11,6 @@ const Navbar = (props) => {
   const navigate = useNavigate();
 
   let cart = JSON.parse(localStorage.getItem('cart'));
-  console.log(cart);
 
   return (
     <nav className="navigation">

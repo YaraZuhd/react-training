@@ -1,3 +1,10 @@
+.ui.items{
+  margin: 1.5rem !important;
+}
+
+.ui.basic.negative.button, .ui.basic.negative.buttons .button, .ui[class*="right floated"].header{
+  margin: 1.5rem;
+}
 .cart {
     display: grid;
     grid-template-columns: 50% 50%;

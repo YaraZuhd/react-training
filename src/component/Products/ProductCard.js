@@ -5,8 +5,6 @@ import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
 const ProductCard = (props) => {
     const [itemQuantity, setitemQuantity] = useState(1);
 
-   
-
     const addProductToCart = async (productInfo, quantityNumber) => {
         try {
             const requestOptions = {

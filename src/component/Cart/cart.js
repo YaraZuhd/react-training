@@ -35,6 +35,7 @@ const Cart = (props) => {
       );
       if (response.status === 200 && response.ok) {
         const data = await response.json();
+        console.log(data);
         setCartItems(data.items);
         cartobj = data;
         localStorage.setItem("cart", JSON.stringify(data));
@@ -47,9 +48,33 @@ const Cart = (props) => {
     }
   }, [token]);
 
-  const emptyCart = async() => {
-  
-  }
+  const emptyCart = useCallback(async () => {
+    try {
+      const requestOptions = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        method :'DELETE'
+      };
+      const response = await fetch(
+        `http://localhost:3000/carts/delete-cart-items`,
+        requestOptions
+      );
+      if (response.status === 200 && response.ok) {
+        const data = await response.json();
+        setCartItems([]);
+        cartobj = data;
+        localStorage.removeItem('cart');
+        localStorage.setItem("cart", JSON.stringify(data));
+        setCart(data);
+      } else {
+        throw new Error("No Cart Found");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, [token]);
 
   useEffect(() => {
     fetchCart();
