@@ -1,3 +1,4 @@
+import React from 'react';
 import "./ProductContainer.css";
 import { Grid } from "semantic-ui-react";
 import "bootstrap/dist/css/bootstrap.css";
