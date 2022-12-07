@@ -3,6 +3,8 @@ import { Item, Header, Button, Icon, Input } from 'semantic-ui-react';
 
 const CartItems = (props) => {
 
+  console.log(props);
+
     const [itemQuantity , setItemQuantity] = useState(props.item.quantity);
     
     const updateCartItem = useCallback(async (productId,  productInfo, quantity) => {

@@ -78,7 +78,7 @@ const Cart = (props) => {
 
   useEffect(() => {
     fetchCart();
-  }, []);
+  }, [cartItems]);
 
   return ( 
     <>
