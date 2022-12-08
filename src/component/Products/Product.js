@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaCartPlus, FaEye  } from 'react-icons/fa';
 import logo from '../../photo1.jpg';
 
-
-
 const Product = (props) => {
   
   const navigate = useNavigate();

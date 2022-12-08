@@ -1,7 +1,6 @@
 import React from 'react';
 import "./ProductContainer.css";
 import { Grid } from "semantic-ui-react";
-import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "../NavResponsive/Navbar";
 import LeftPanel from "../LeftPanel/LeftPanel";
 import ProductList from "./productList";

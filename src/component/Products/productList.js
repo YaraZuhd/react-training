@@ -3,7 +3,6 @@ import React from 'react';
 import { useEffect, useState, useCallback } from "react";
 import "./productList.css";
 import { Grid,Divider } from 'semantic-ui-react';
-import "bootstrap/dist/css/bootstrap.css";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
