@@ -5,75 +5,7 @@
 .ui.basic.negative.button, .ui.basic.negative.buttons .button, .ui[class*="right floated"].header{
   margin: 1.5rem;
 }
-.cart {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width: 80%;
-    height: 550px;
-    background-color: #0c3f3fc5;
-    padding: 0px;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid #000;
-    overflow: hidden;
-    transition: 0.3s linear;
-    border-radius: 4px;
 
-}
-.cart-info{
-  background-color: #162b2b;
-  color: white;
-  border-radius: 6px;
-  padding: 3rem;
-  margin: 7rem auto;
-  width: 70%;
-  height: 40%;
-  max-width: 40rem;
-  }
-
-  .title{
-    font-size: 3rem;
-  }
-
-  .username{
-    color: rgb(214, 214, 15);
-  }
-
-.cart .side-div {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-  url('https://www.onlinehaendler-news.de/images/2018/04/shutterstock_382783252.jpg');
-  background-size: cover;
-  background-position: center;
-}
-
-.desription{
-  text-align: left;
-  margin-top:10px;
-  margin-bottom:10px;
-  color: #74fafad2;
-  font-style: italic;
-  font-size: 1.5rem;
-}
-
-.price {
-  text-align: left;
-  color: #15e7e7;
-  font-style: italic;
-  font-size: 1.5rem;
-}
-
-
-.status{
-  text-align: left;
-  margin-top:10px;
-  margin-bottom:10px;
-  color: #a0f1f1cc;
-  font-style: italic;
-  font-size: 1.5rem;
+.ui.image img, .ui.image svg{
+  display: inherit !important;
 }

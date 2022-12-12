@@ -2,12 +2,15 @@ import React from "react";
 import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
-import { MDBBadge, MDBIcon } from 'mdb-react-ui-kit';
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import {selectCount } from "../../counter/counterSlice";
 
 
 const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
+  const count = useSelector(selectCount);
+
   const navigate = useNavigate();
 
   let cart = JSON.parse(localStorage.getItem('cart'));
@@ -37,11 +40,10 @@ const Navbar = (props) => {
             <Link to={"/products"} className={'nav-item'}>Products</Link>
           </li>
           <li>
-            {(cart !== null && cart.items.length > 0) && (
+            {(cart !== null  && cart.items.length > 0) && (
               <Link to={"/cart"} className={'nav-item'}>
                Cart
-               <MDBIcon fas icon='envelope' size='lg'/>
-               <MDBBadge color='danger' notification pill style={{marginLeft:'3px'}}>{cart.items.length}</MDBBadge>
+               <span className="badge">{cart.items.length}</span>
               </Link>
             )}
                 {(cart !== null && cart.items.length === 0) && (

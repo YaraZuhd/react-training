@@ -82,7 +82,6 @@ const Login = () => {
         );
         if (response.status === 200 && response.ok) {
           const data = await response.json();
-          console.log(data);
           localStorage.setItem('cart',JSON.stringify(data));
         } else {
           throw new Error("No Cart Found");
@@ -131,7 +130,6 @@ const Login = () => {
               }  
             }
          } catch(error) {
-            console.log(error);
             setErrorState("Invalid Information");
         }
     };

@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './ProductCard.css';
+import { useSelector, useDispatch } from "react-redux";
+import {increment, selectCount } from "../../counter/counterSlice";
 import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
 
 const ProductCard = (props) => {
+    const count = useSelector(selectCount);
+    const dispatch = useDispatch();
+
     const [itemQuantity, setitemQuantity] = useState(1);
 
     const addProductToCart = async (productInfo, quantityNumber) => {
@@ -23,6 +28,7 @@ const ProductCard = (props) => {
               const data = await response.json();
               localStorage.removeItem('cart');                       
               localStorage.setItem('cart', JSON.stringify(data));
+              dispatch(increment())
             } else {
               throw new Error("No Found");
             }

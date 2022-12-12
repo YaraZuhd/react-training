@@ -1,9 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import { Item, Header, Button, Icon, Input } from 'semantic-ui-react';
+import { useSelector, useDispatch } from "react-redux";
+import { decrement, selectCount } from "../../counter/counterSlice";
 
 const CartItems = (props) => {
 
-  console.log(props);
+  const count = useSelector(selectCount);
+  const dispatch = useDispatch();
+
+
 
     const [itemQuantity , setItemQuantity] = useState(props.item.quantity);
     
@@ -15,16 +20,14 @@ const CartItems = (props) => {
               "Content-Type": "application/json",
               Authorization: `Bearer ${localStorage.getItem('token')}`,
             },
-            body: JSON.stringify({items : [{id : productInfo.id, cID : productInfo.cID,
-                 productName: productInfo.productName, productId : productInfo.productId,
-                 newQuantity : quantity , price : productInfo.price, oldQuantity:productInfo.quantity
+            body: JSON.stringify({items : [{id : productInfo.id, newQuantity : quantity, 
+                 oldQuantity:productInfo.quantity, productId : productInfo.productId,
                 }]}),
           };
           const response = await fetch(
             `http://localhost:3000/carts/update-cart-item/${productId}`,
             requestOptions
           );
-          console.log(response);
           if (response.status === 200 && response.ok) {
             const data = await response.json();
             localStorage.removeItem('cart');
@@ -53,9 +56,9 @@ const CartItems = (props) => {
           );
           if (response.status === 200 && response.ok) {
             const data = await response.json();
-            console.log(data);
             localStorage.removeItem('cart');
             localStorage.setItem("cart", JSON.stringify(data));
+            dispatch(decrement())
           } else {
             throw new Error("No Cart Found");
           }
