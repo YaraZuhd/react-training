@@ -4,8 +4,8 @@ import "./cart.css";
 import Navbar from "../NavResponsive/Navbar";
 import { Button, Modal, Header, Item, Image } from "semantic-ui-react";
 import CartItems from "./cartItem";
-import { useSelector, useDispatch } from "react-redux";
-import { reset, selectCount } from "../../counter/counterSlice";
+import { useDispatch } from "react-redux";
+import { reset } from "../../counter/counterSlice";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
@@ -14,7 +14,6 @@ const Cart = (props) => {
   const [toggle, setToggle] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   let cartobj = {};
-  const count = useSelector(selectCount);
   const dispatch = useDispatch();
 
   const handelCallback = (childData) => {
@@ -115,12 +114,6 @@ const Cart = (props) => {
                 </div>
                 <div class="card-body cart">
                   <div class="col-sm-12 empty-cart-cls text-center">
-                    {/* <image
-                      src="https://i.imgur.com/dCdflKN.png"
-                      width="130"
-                      height="130"
-                      class="img-fluid mb-4 mr-3"
-                    ></image> */}
                      <Image wrapped size='huge' src='https://cdn.pixabay.com/photo/2012/04/16/11/34/shopping-35594__340.png'
                      className="img-cart-empty"/>
                     <h3>

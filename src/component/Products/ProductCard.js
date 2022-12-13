@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import './ProductCard.css';
-import { useSelector, useDispatch } from "react-redux";
-import {increment, selectCount } from "../../counter/counterSlice";
+import { useDispatch } from "react-redux";
+import {increment } from "../../counter/counterSlice";
 import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
 
 const ProductCard = (props) => {
-    const count = useSelector(selectCount);
     const dispatch = useDispatch();
 
     const [itemQuantity, setitemQuantity] = useState(1);

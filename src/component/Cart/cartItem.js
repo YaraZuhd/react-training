@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { Item, Header, Button, Icon, Input } from 'semantic-ui-react';
-import { useSelector, useDispatch } from "react-redux";
-import { decrement, selectCount } from "../../counter/counterSlice";
+import { useDispatch } from "react-redux";
+import { decrement } from "../../counter/counterSlice";
+import "./cartItem.css";
 
 const CartItems = (props) => {
 
-  const count = useSelector(selectCount);
   const dispatch = useDispatch();
 
 

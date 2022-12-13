@@ -2,14 +2,11 @@ import React from "react";
 import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {selectCount } from "../../counter/counterSlice";
 
 
 const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-  const count = useSelector(selectCount);
 
   const navigate = useNavigate();
 

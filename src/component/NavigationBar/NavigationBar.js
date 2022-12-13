@@ -18,7 +18,7 @@ const NavigationBar = () => {
             <a href='/'>Online Shoping</a>
          </div>
          <div>
-            <a className='welcoming'>Welcome,  <span> {token ?  user.firstname : "Guset" } </span></a>
+            <a className='welcoming' href='/Login'>Welcome,  <span> {token ?  user.firstname : "Guset" } </span></a>
             {!token && <FaUser className='icon'/>}
          </div>
         </nav>
