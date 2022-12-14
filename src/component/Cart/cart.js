@@ -122,7 +122,7 @@ const Cart = (props) => {
                     <h4>Add something to make me happy </h4>
                     <a
                       href="/products"
-                      class="btn btn-primary cart-btn-transform m-3"
+                      className="btn btn-primary cart-btn-transform m-3"
                       data-abc="true"
                     >
                       continue shopping
