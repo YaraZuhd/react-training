@@ -2,6 +2,8 @@ import React from "react";
 import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
+import {useSelector} from "react-redux";
+import { selectCount } from "../../counter/counterSlice"
 import { Link, useNavigate } from "react-router-dom";
 
 
@@ -9,7 +11,7 @@ const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   const navigate = useNavigate();
-
+  const count = useSelector(selectCount);
   let cart = JSON.parse(localStorage.getItem('cart'));
 
   return (
@@ -37,10 +39,10 @@ const Navbar = (props) => {
             <Link to={"/products"} className={'nav-item'}>Products</Link>
           </li>
           <li>
-            {(cart !== null  && cart.items.length > 0) && (
+            {(cart !== null  && cart.items.length > 0 && count > 0) && (
               <Link to={"/cart"} className={'nav-item'}>
                Cart
-               <span className="badge">{cart.items.length}</span>
+               <span className="badge">{count}</span>
               </Link>
             )}
                 {(cart !== null && cart.items.length === 0) && (
