@@ -106,14 +106,14 @@ const Cart = (props) => {
         </>
       )}
       {cartItems.length === 0 && (
-        <div class="container-fluid  mt-100">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
+        <div className="container-fluid  mt-100">
+          <div className="row-cart">
+            <div className="col-md-12">
+              <div className="card">
+                <div className="card-header">
                 </div>
-                <div class="card-body cart">
-                  <div class="col-sm-12 empty-cart-cls text-center">
+                <div className="card-body cart">
+                  <div className="col-sm-12 empty-cart-cls text-center">
                      <Image wrapped size='huge' src='https://cdn.pixabay.com/photo/2012/04/16/11/34/shopping-35594__340.png'
                      className="img-cart-empty"/>
                     <h3>
@@ -133,19 +133,6 @@ const Cart = (props) => {
             </div>
           </div>
         </div>
-        // <>
-        //     <Modal.Header>Seities Apparel Cart</Modal.Header>
-        //     <Modal.Content image>
-        //         <Image wrapped size='huge'
-        //         src='https://cdn.pixabay.com/photo/2012/04/16/11/34/shopping-35594__340.png' />
-        //         <Modal.Description>
-        //             <Header>Your Cart is currently Empty</Header>
-        //             <p>
-        //                 It would make you very happy if you added an item to the cart
-        //             </p>
-        //         </Modal.Description>
-        //     </Modal.Content>
-        // </>
       )}
     </>
   );

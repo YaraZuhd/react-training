@@ -9,3 +9,8 @@
 .ui.image img, .ui.image svg{
   display: inherit !important;
 }
+
+.row-cart{
+  margin-left: 0px !important;
+  margin-top: 100px !important;
+}

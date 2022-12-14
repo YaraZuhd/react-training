@@ -18,3 +18,7 @@
 .add-button{
     margin-top: 5px !important;
 }
+
+.card .quanity-group {
+    justify-content: space-between;
+}

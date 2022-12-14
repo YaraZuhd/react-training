@@ -69,7 +69,7 @@ const CartItems = (props) => {
 
     return (
         <>
-            <Item.Content verticalAlign='middle'>
+            <Item.Content verticalAlign='middle' className='cart-item'>
                 <Item.Header>{props.item.productName}</Item.Header>
                 <Item.Image 
                 size='tiny'  
