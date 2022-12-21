@@ -4,7 +4,7 @@ import "./cart.css";
 import Navbar from "../NavResponsive/Navbar";
 import { Button, Modal, Header, Item, Image } from "semantic-ui-react";
 import CartItems from "./cartItem";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { reset } from "../../redux/counterSlice";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -15,7 +15,10 @@ const Cart = (props) => {
   const [cartItems, setCartItems] = useState([]);
   let cartobj = {};
   const dispatch = useDispatch();
+  let {cartInfo,cartItemsArray,cartTotalQuantity,cartTotalAmount,status} = useSelector((state) => state.cart);
+  // console.log('cartInfo',cartInfo,'cartItemsArray',cartItemsArray,'cartTotalQuantity' ,cartTotalQuantity,'cartTotalAmount' ,cartTotalAmount,'status' ,status);
 
+  
   const handelCallback = (childData) => {
     setToggle(childData);
   };
