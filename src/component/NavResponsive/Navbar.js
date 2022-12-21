@@ -2,23 +2,26 @@ import React from "react";
 import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
-import {useSelector} from "react-redux";
-import { selectCount } from "../../counter/counterSlice"
+import { useSelector } from "react-redux";
+import { selectCount } from "../../redux/counterSlice";
 import { Link, useNavigate } from "react-router-dom";
-
 
 const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-
   const navigate = useNavigate();
-  const count = useSelector(selectCount);
-  let cart = JSON.parse(localStorage.getItem('cart'));
+  let count = useSelector(selectCount);
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if(cart !== null){
+    if(cart.items.length !== 0){
+      count = cart.items.length;
+    }
+  }
 
   return (
     <nav className="navigation">
-      <a href="/" className="brand-name">
+      <Link to={"/"} className={"brand-name"}>
         Online Shopping
-      </a>
+      </Link>
       <button
         className="menu-bar"
         type="button"
@@ -36,23 +39,25 @@ const Navbar = (props) => {
       >
         <ul>
           <li>
-            <Link to={"/products"} className={'nav-item'}>Products</Link>
+            <Link to={"/products"} className={"nav-item"}>
+              Products
+            </Link>
           </li>
           <li>
-            {(cart !== null  && cart.items.length > 0 && count > 0) && (
-              <Link to={"/cart"} className={'nav-item'}>
-               Cart
-               <span className="badge">{count}</span>
+            {cart === null && (
+              <Link to={"/cart"} className={"nav-item"}>
+                Cart
               </Link>
             )}
-                {(cart !== null && cart.items.length === 0) && (
-                  <Link to={"/cart"} className={'nav-item'}>
-                   Cart
-                  </Link>
-            )}
-            {cart === null && (
-              <Link to={"/cart"} className={'nav-item'}>
+            {cart !== null && cart.items.length === 0 && (
+              <Link to={"/cart"} className={"nav-item"}>
                 Cart
+              </Link>
+            )}
+            {cart !== null && cart.items.length > 0 && count > 0 && (
+              <Link to={"/cart"} className={"nav-item"}>
+                Cart
+                <span className="badge">{count}</span>
               </Link>
             )}
           </li>
@@ -64,6 +69,7 @@ const Navbar = (props) => {
                 localStorage.removeItem("token");
                 localStorage.removeItem("user");
                 localStorage.removeItem("cart");
+                localStorage.removeItem("products");
                 navigate("/login");
               }}
             >

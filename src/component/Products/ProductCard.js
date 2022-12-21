@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './ProductCard.css';
 import { useDispatch } from "react-redux";
-import {increment } from "../../counter/counterSlice";
+import {increment } from "../../redux/counterSlice";
 import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
+import { addToCart } from '../../redux/cartSlice';
 
 const ProductCard = (props) => {
     const dispatch = useDispatch();
-
     const [itemQuantity, setitemQuantity] = useState(1);
 
     const addProductToCart = async (productInfo, quantityNumber) => {
@@ -27,7 +27,8 @@ const ProductCard = (props) => {
               const data = await response.json();
               localStorage.removeItem('cart');                       
               localStorage.setItem('cart', JSON.stringify(data));
-              dispatch(increment())
+              dispatch(increment());
+              dispatch(addToCart(productInfo));
             } else {
               throw new Error("No Found");
             }

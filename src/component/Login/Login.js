@@ -1,11 +1,13 @@
 import "./Login.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useSelector} from "react-redux";
+import { selectCount } from "../../redux/counterSlice";
 
 const Login = () => {
     const navigate = useNavigate();
     const [state, setState]  =useState({loggedIn:true});
+    let count = useSelector(selectCount);
     const [ errorMessage, setErrorMessage] = useState({
         emailError: "",
         passwordError: "",
@@ -68,30 +70,6 @@ const Login = () => {
         }  
     };
 
-    const fetchCart = async (token) => {
-      try {
-        const requestOptions = {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        };
-        const response = await fetch(
-          `http://localhost:3000/carts/me`,
-          requestOptions
-        );
-        if (response.status === 200 && response.ok) {
-          const data = await response.json();
-          localStorage.setItem('cart',JSON.stringify(data));
-        } else {
-          throw new Error("No Cart Found");
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    
-
 
     const loginUser = async () => {
         try {
@@ -105,10 +83,10 @@ const Login = () => {
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
-                fetchCart(data.token)
                 setState({loggedIn: true});
                 setUserInput({userEmail: "", userPassword: ""});
                 setErrorState("");
+                console.log(count);
                 navigate('/');
             }else if(response.status === 404 && !response.ok){
               setErrorMessage((prevState) => {
@@ -124,7 +102,6 @@ const Login = () => {
               }else if(userInput.userEmail.length === 0 && userInput.userPassword.length >0){
                  errorMessage.emailError = "Email is required";
               }else if (userInput.userEmail.length >0 && userInput.userPassword.length >0){
-                  // errorState ='Enter Valid Data';
                   errorMessage.passwordError = "Password is required";
                   errorMessage.emailError = "Email is required";
               }  

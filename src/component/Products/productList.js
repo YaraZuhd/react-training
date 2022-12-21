@@ -1,53 +1,25 @@
-import React from 'react';
-
-import { useEffect, useState, useCallback } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import "./productList.css";
-import { Grid,Divider } from 'semantic-ui-react';
+import { Grid, Divider } from "semantic-ui-react";
 import ProductCard from "./ProductCard";
 
 const ProductList = () => {
-  let token = "";
-  const [productsData, setProductsData] = useState([]);
+  const { products, status } = useSelector((state) => state.products);
 
-  if (localStorage.getItem("token") != null) {
-    token = localStorage.getItem("token");
-  }
-
-  const fetchProducts = useCallback(async () => {
-    try {
-      const requestOptions = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      };
-      const response = await fetch(
-        `http://localhost:3000/products`,
-        requestOptions
-      );
-      if (response.status === 200 && response.ok) {
-        const data = await response.json();
-        localStorage.setItem('products', JSON.stringify(data));
-        setProductsData(data);
-      } else {
-        throw new Error("No Product Found");
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  }, [token]);
-
-  useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
   return (
     <>
-        <Divider horizontal>Shop All Proudcts</Divider>
-        <Grid stackable columns='equal' centered>
-            {productsData.map(product => <Grid.Column width={5} key={product.id}>
-                <ProductCard product={product}/>
-                </Grid.Column>)}
-        </Grid>
+      <Divider horizontal>Shop All Proudcts</Divider>
+      <Grid stackable columns="equal" centered>
+        {status === "pending" && <h5>Loading ...</h5>}
+        {status === "rejected" && <h5>An error occured ..</h5>}
+        {status === "success" &&
+          products.map((product) => (
+            <Grid.Column width={5} key={product.id}>
+              <ProductCard product={product} />
+            </Grid.Column>
+          ))}
+      </Grid>
     </>
   );
 };

@@ -6,7 +6,6 @@ import AuthPage from './Pages/Auth';
 import HomePage from './Pages/HomePage';
 import Cart from './component/Cart/cart';
 import ProductContainer from './component/Products/ProductContainer';
-
 const App = ()=> {
   return (
     <div className="App">

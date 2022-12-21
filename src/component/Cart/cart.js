@@ -5,7 +5,7 @@ import Navbar from "../NavResponsive/Navbar";
 import { Button, Modal, Header, Item, Image } from "semantic-ui-react";
 import CartItems from "./cartItem";
 import { useDispatch } from "react-redux";
-import { reset } from "../../counter/counterSlice";
+import { reset } from "../../redux/counterSlice";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
