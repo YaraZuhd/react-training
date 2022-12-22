@@ -45,45 +45,6 @@ export const emptyCart = createAsyncThunk("cart/emptyCart", async () => {
   }
 });
 
-const updateCartItem = createAsyncThunk(
-    "cart/updateCart",
-    async (productId, productInfo, quantity) => {
-      try {
-        const requestOptions = {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({
-            items: [
-              {
-                id: productInfo.id,
-                newQuantity: quantity,
-                oldQuantity: productInfo.quantity,
-                productId: productInfo.productId,
-              },
-            ],
-          }),
-        };
-        const response = await fetch(
-          `http://localhost:3000/carts/update-cart-item/${productId}`,
-          requestOptions
-        );
-        if (response.status === 200 && response.ok) {
-          const data = await response.json();
-          localStorage.removeItem("cart");
-          localStorage.setItem("cart", JSON.stringify(data));
-        } else {
-          throw new Error("No Cart Found");
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    },
-    [localStorage.getItem("token")]
-  );
-
 const INITIALSTATE = {
   cartInfo: {},
   cartItemsArray: [],
@@ -115,15 +76,6 @@ const cartSlice = createSlice({
         state.cartInfo = action.payload;
       }
     },
-    // increaseCart(state, action) {
-    //   const itemIndex = state.cartItemsArray.findIndex(
-    //     (item) => item.id === action.payload.id
-    //   );
-    //   state.cartItemsArray[itemIndex] = {
-    //     ...state.cartItemsArray[itemIndex],
-    //     cartQuantity: state.cartItemsArray[itemIndex].cartQuantity + 1,
-    //   };
-    // },
     updateCartItem(state, action) {},
   },
   extraReducers: {
