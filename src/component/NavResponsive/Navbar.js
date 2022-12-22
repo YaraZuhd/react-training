@@ -3,19 +3,12 @@ import "./Navbar.css";
 import { FaSignOutAlt, FaBars } from "react-icons/fa";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectCount } from "../../redux/counterSlice";
 import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const navigate = useNavigate();
-  let count = useSelector(selectCount);
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  if(cart !== null){
-    if(cart.items.length !== 0){
-      count = cart.items.length;
-    }
-  }
+  let {cartInfo,cartItemsArray,cartTotalQuantity,cartTotalAmount,status} = useSelector((state) => state.cart);
 
   return (
     <nav className="navigation">
@@ -44,20 +37,20 @@ const Navbar = (props) => {
             </Link>
           </li>
           <li>
-            {cart === null && (
+            {cartInfo === null && (
               <Link to={"/cart"} className={"nav-item"}>
                 Cart
               </Link>
             )}
-            {cart !== null && cart.items.length === 0 && (
+            {cartInfo !== null && cartItemsArray.length === 0 && (
               <Link to={"/cart"} className={"nav-item"}>
                 Cart
               </Link>
             )}
-            {cart !== null && cart.items.length > 0 && count > 0 && (
+            {cartInfo !== null && cartItemsArray.length > 0 && (
               <Link to={"/cart"} className={"nav-item"}>
                 Cart
-                <span className="badge">{count}</span>
+                <span className="badge">{cartItemsArray.length}</span>
               </Link>
             )}
           </li>

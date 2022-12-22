@@ -3,7 +3,7 @@ import './ProductCard.css';
 import { useDispatch } from "react-redux";
 import {increment } from "../../redux/counterSlice";
 import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
-import { addToCart } from '../../redux/cartSlice';
+import { addToCart, cartFetch } from '../../redux/cartSlice';
 
 const ProductCard = (props) => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const ProductCard = (props) => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
               },
-              body: JSON.stringify({ items : [{id: productInfo.id, quantity: +quantityNumber, productName : productInfo.name}]}),
+              body: JSON.stringify({ items : [{id: productInfo.id, quantity: +quantityNumber, productName : productInfo.name, productPrice : productInfo.price}]}),
             };
             const response = await fetch(
               `http://localhost:3000/carts/add-product-to-cart`,
@@ -28,7 +28,8 @@ const ProductCard = (props) => {
               localStorage.removeItem('cart');                       
               localStorage.setItem('cart', JSON.stringify(data));
               dispatch(increment());
-              dispatch(addToCart(productInfo));
+              dispatch(addToCart(data));
+              dispatch(cartFetch());
             } else {
               throw new Error("No Found");
             }
