@@ -1,13 +1,15 @@
 import "./Login.css";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector} from "react-redux";
-import { selectCount } from "../../redux/counterSlice";
+import { useDispatch } from "react-redux";
+import { cartFetch} from '../../redux/cartSlice';
+import { productsFetch } from "../../redux/productSlice";
+
 
 const Login = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [state, setState]  =useState({loggedIn:true});
-    let count = useSelector(selectCount);
     const [ errorMessage, setErrorMessage] = useState({
         emailError: "",
         passwordError: "",
@@ -83,10 +85,12 @@ const Login = () => {
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
+                console.log(data, localStorage.getItem('token'));
+                dispatch(productsFetch());
+                dispatch(cartFetch());
                 setState({loggedIn: true});
                 setUserInput({userEmail: "", userPassword: ""});
                 setErrorState("");
-                console.log(count);
                 navigate('/');
             }else if(response.status === 404 && !response.ok){
               setErrorMessage((prevState) => {

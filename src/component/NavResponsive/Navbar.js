@@ -8,7 +8,11 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = (props) => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
   const navigate = useNavigate();
-  let {cartInfo,cartItemsArray,cartTotalQuantity,cartTotalAmount,status} = useSelector((state) => state.cart);
+  let cartInfo = {};
+  let cartItemsArray = [];
+  cartInfo = useSelector((state) => state.cart.cartInfo);
+  cartItemsArray = useSelector((state) => state.cart.cartItemsArray);
+  console.log(cartInfo,cartItemsArray);
 
   return (
     <nav className="navigation">

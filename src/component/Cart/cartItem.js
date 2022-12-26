@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Item, Header, Button, Icon, Input } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { decrement } from "../../redux/counterSlice";
+import { cartFetch, updateCartItems,deleteItem  } from '../../redux/cartSlice';
 import "./cartItem.css";
 
 const CartItems = (props) => {
@@ -10,7 +10,7 @@ const CartItems = (props) => {
   const [itemQuantity, setItemQuantity] = useState(props.item.quantity);
 
   const updateCartItem = useCallback(
-    async (productId, productInfo, quantity) => {
+    async (productId, productInfo, quantity, updateProduct) => {
       try {
         const requestOptions = {
           method: "PUT",
@@ -37,6 +37,8 @@ const CartItems = (props) => {
           const data = await response.json();
           localStorage.removeItem("cart");
           localStorage.setItem("cart", JSON.stringify(data));
+          dispatch(updateCartItems(updateProduct));
+          dispatch(cartFetch());
         } else {
           throw new Error("No Cart Found");
         }
@@ -65,7 +67,8 @@ const CartItems = (props) => {
           const data = await response.json();
           localStorage.removeItem("cart");
           localStorage.setItem("cart", JSON.stringify(data));
-          dispatch(decrement());
+          dispatch(deleteItem(data));
+          // dispatch(cartFetch());
         } else {
           throw new Error("No Cart Found");
         }
@@ -94,7 +97,8 @@ const CartItems = (props) => {
               if (newQuantity === 0) {
                 deleteItemFromCart(props.item.productId);
               } else {
-                updateCartItem(props.item.productId, props.item, newQuantity);
+                let updatedProduct = {...props.item, updatedQuantity:newQuantity};
+                updateCartItem(props.item.productId, props.item, newQuantity, updatedProduct);
               }
             }}
           >
@@ -107,7 +111,8 @@ const CartItems = (props) => {
             onClick={() => {
               setItemQuantity(itemQuantity + 1);
               let newQuantity = itemQuantity + 1;
-              updateCartItem(props.item.productId, props.item, newQuantity);
+              let updatedProduct = {...props.item, updatedQuantity:newQuantity};
+              updateCartItem(props.item.productId, props.item, newQuantity, updatedProduct);
             }}
           >
             <Icon name="plus" />

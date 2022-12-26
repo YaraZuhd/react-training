@@ -38,7 +38,6 @@ export const emptyCart = createAsyncThunk("cart/emptyCart", async () => {
       requestOptions
     );
     const data = await response.json();
-    //dispatch(reset());
     return data;
   } catch (error) {
     console.log(error.message);
@@ -62,9 +61,7 @@ const cartSlice = createSlice({
       const itemIndex = state.cartItemsArray.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log(itemIndex);
       if (itemIndex >= 0) {
-        //state.cartItemsArray[itemIndex].cartQuantity += 1;
         state.cartItemsArray[itemIndex] = {
           ...state.cartItemsArray[itemIndex],
           cartQuantity: state.cartItemsArray[itemIndex].cartQuantity + 1,
@@ -76,14 +73,41 @@ const cartSlice = createSlice({
         state.cartInfo = action.payload;
       }
     },
-    updateCartItem(state, action) {},
+    updateCartItems(state, action) {
+      console.log(action.payload);
+      const itemIndex = state.cartItemsArray.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.cartItemsArray[itemIndex] = {
+        ...state.cartItemsArray[itemIndex],
+        quantity: action.payload.updatedQuantity,
+      };
+      state.cartInfo = action.payload;
+    },
+    deleteItem(state, action) {
+      state.cartInfo = action.payload;
+      state.cartItemsArray = action.payload.cartItemsArray;
+      state.cartTotalQuantity = action.payload.quantity;
+      state.cartTotalAmount = action.cartInfo.price;
+      // const itemIndex = state.cartItemsArray.findIndex(
+      //   (item) => 
+      //   item.productId === action.payload
+      // );
+      // state.cartInfo.quentity =
+      //   state.cartInfo.quentity - state.cartItemsArray[itemIndex].quantity;
+      // state.cartInfo.price =
+      //   state.cartInfo.price - state.cartItemsArray[itemIndex].price;
+      // state.cartItemsArray = state.cartItemsArray.filter((item) => {
+      //   if (item.productId !== action.payload) {
+      //   }
+      // });
+    },
   },
   extraReducers: {
     [cartFetch.pending]: (state, action) => {
       state.status = "pending";
     },
     [cartFetch.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.cartInfo = action.payload;
       state.cartItemsArray = action.payload.items;
       state.cartTotalQuantity = action.payload.quentity;
@@ -109,6 +133,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, updateCartItems, deleteItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

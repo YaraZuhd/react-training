@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './ProductCard.css';
 import { useDispatch } from "react-redux";
-import {increment } from "../../redux/counterSlice";
 import { Card, Image, Button, Icon, Input } from 'semantic-ui-react';
 import { addToCart, cartFetch } from '../../redux/cartSlice';
 
@@ -27,7 +26,6 @@ const ProductCard = (props) => {
               const data = await response.json();
               localStorage.removeItem('cart');                       
               localStorage.setItem('cart', JSON.stringify(data));
-              dispatch(increment());
               dispatch(addToCart(data));
               dispatch(cartFetch());
             } else {
