@@ -12,7 +12,7 @@ const Navbar = (props) => {
   let cartItemsArray = [];
   cartInfo = useSelector((state) => state.cart.cartInfo);
   cartItemsArray = useSelector((state) => state.cart.cartItemsArray);
-  console.log(cartInfo,cartItemsArray);
+  //console.log(cartInfo,cartItemsArray.length);
 
   return (
     <nav className="navigation">

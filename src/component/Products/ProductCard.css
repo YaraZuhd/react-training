@@ -22,3 +22,7 @@
 .card .quanity-group {
     justify-content: space-between;
 }
+
+.ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui){
+    white-space: nowrap;
+}

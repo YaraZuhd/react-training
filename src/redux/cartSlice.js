@@ -85,22 +85,20 @@ const cartSlice = createSlice({
       state.cartInfo = action.payload;
     },
     deleteItem(state, action) {
-      state.cartInfo = action.payload;
-      state.cartItemsArray = action.payload.cartItemsArray;
-      state.cartTotalQuantity = action.payload.quantity;
-      state.cartTotalAmount = action.cartInfo.price;
-      // const itemIndex = state.cartItemsArray.findIndex(
-      //   (item) => 
-      //   item.productId === action.payload
-      // );
+      const itemIndex = state.cartItemsArray.findIndex(
+        (item) => 
+        item.productId === action.payload
+      );
+      console.log(itemIndex);
       // state.cartInfo.quentity =
       //   state.cartInfo.quentity - state.cartItemsArray[itemIndex].quantity;
       // state.cartInfo.price =
       //   state.cartInfo.price - state.cartItemsArray[itemIndex].price;
-      // state.cartItemsArray = state.cartItemsArray.filter((item) => {
-      //   if (item.productId !== action.payload) {
-      //   }
-      // });
+      state.cartItemsArray = state.cartItemsArray.filter((item) => {
+        if (item.productId !== action.payload) {
+          return item;
+        }
+      });
     },
   },
   extraReducers: {

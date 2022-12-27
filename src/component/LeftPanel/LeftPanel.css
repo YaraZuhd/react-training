@@ -3,3 +3,12 @@
     /* margin-right: 2rem; */
 }
 
+.header-phones:hover, .header-cars:hover, .header-item:hover{
+    cursor: pointer;
+    color: rgba(64, 187, 171, 0.74);
+}
+
+.ui.vertical.menu .menu .item:hover{
+    color: rgba(64, 187, 171, 0.74);
+}
+

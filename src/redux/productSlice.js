@@ -1,8 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 
 const INITIALSTATE = {
      products : [],
+     filterd : false,
+     filterCategorie : '',
+     filterProduct :'',
      status : null,
 }
 
@@ -37,7 +41,20 @@ export const productsFetch = createAsyncThunk(
 const productSlice = createSlice({
     name: "product",
     initialState : INITIALSTATE,
-    reducers : {},
+    reducers : {
+      filterProduct(state,action){
+        state.filterd = false;
+        state.filterCategorie = '';
+        state.filterProduct = '';
+        if(action.payload.className === 'header'){
+          state.filterd = true;
+          state.filterCategorie = action.payload.text;
+        }else if (action.payload.className === 'item'){
+          state.filterd = true;
+          state.filterProduct = action.payload.text;
+        }
+      },
+    },
     extraReducers : {
         [productsFetch.pending] : (state,action) => {
             state.status = "pending";
@@ -51,5 +68,8 @@ const productSlice = createSlice({
         },
     },
 });
+
+export const { filterProduct } = productSlice.actions;
+
 
 export default productSlice.reducer;

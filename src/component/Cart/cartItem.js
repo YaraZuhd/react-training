@@ -67,8 +67,8 @@ const CartItems = (props) => {
           const data = await response.json();
           localStorage.removeItem("cart");
           localStorage.setItem("cart", JSON.stringify(data));
-          dispatch(deleteItem(data));
-          // dispatch(cartFetch());
+          dispatch(deleteItem(productId));
+          dispatch(cartFetch());
         } else {
           throw new Error("No Cart Found");
         }

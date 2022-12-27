@@ -88,6 +88,8 @@ const Login = () => {
                 console.log(data, localStorage.getItem('token'));
                 dispatch(productsFetch());
                 dispatch(cartFetch());
+                setTimeout(() => {
+                }, 5000);
                 setState({loggedIn: true});
                 setUserInput({userEmail: "", userPassword: ""});
                 setErrorState("");
