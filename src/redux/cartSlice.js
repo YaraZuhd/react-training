@@ -5,14 +5,24 @@ if (localStorage.getItem("token") !== null) {
   token = localStorage.getItem("token");
 }
 
-export const cartFetch = createAsyncThunk("cart/cartFetch", async () => {
+export const cartFetch = createAsyncThunk("cart/cartFetch", async (userToken) => {
   try {
-    const requestOptions = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    let requestOptions;
+    if(token === ''){
+       requestOptions = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+      };
+    }else{
+       requestOptions = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+    }
     const response = await fetch(
       `http://localhost:3000/carts/me`,
       requestOptions

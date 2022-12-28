@@ -17,14 +17,24 @@ if(localStorage.getItem('token') !== null){
 
 export const productsFetch = createAsyncThunk(
     "products/productsFetch",
-    async () => {
+    async (userToken) => {
       try {
-        const requestOptions = {
+        let requestOptions ;
+        if(token === ''){
+           requestOptions = {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${userToken}`,
+            },
+          };
+        }else{
+           requestOptions = {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
             },
           };
+        }
           const response = await fetch(
             `http://localhost:3000/products`,
             requestOptions

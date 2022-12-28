@@ -241,7 +241,7 @@ const options = [
         errorMessage.emailError = "Email is required";
         errorMessage.passwordError = "Password is required";
         errorMessage.confirmPasswordError = "Confirm Password is required"
-          setErrorState(error);
+        setErrorState(error);
       }
   } catch(error) {
       console.log(error.message);

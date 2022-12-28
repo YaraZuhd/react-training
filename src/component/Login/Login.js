@@ -86,10 +86,8 @@ const Login = () => {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('user', JSON.stringify(data.user));
                 console.log(data, localStorage.getItem('token'));
-                dispatch(productsFetch());
-                dispatch(cartFetch());
-                setTimeout(() => {
-                }, 5000);
+                dispatch(productsFetch(data.token));
+                dispatch(cartFetch(data.token));
                 setState({loggedIn: true});
                 setUserInput({userEmail: "", userPassword: ""});
                 setErrorState("");

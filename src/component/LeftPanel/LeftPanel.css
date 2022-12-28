@@ -1,14 +1,18 @@
 .main-div{
     margin-top: 50px;
-    /* margin-right: 2rem; */
 }
 
-.header-phones:hover, .header-cars:hover, .header-item:hover{
+.header-trucks:hover ,.header-phones:hover, .header-cars:hover, .header-item:hover, .header-all-products:hover{
     cursor: pointer;
-    color: rgba(64, 187, 171, 0.74);
+    color: rgba(64, 187, 171, 0.74) !important;
 }
 
-.ui.vertical.menu .menu .item:hover{
-    color: rgba(64, 187, 171, 0.74);
+/* .ui.vertical.menu .menu .item:hover, .header-item-active{
+    color: rgba(64, 187, 171, 0.74) !important;
+} */
+
+.element-active{
+    color: rgba(64, 187, 171, 0.74) !important;
+    z-index: 100000000000;
 }
 

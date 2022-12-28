@@ -10,11 +10,15 @@ const ProductList = () => {
   let filterdProducts = products? products : [];
   if(filterd){
     if(filterCategorie !== ''){
-      filterdProducts = []
-      for(let i = 0; i < products.length; i++){
-        for(let j=0; j < products[i].categories.length; j++){
-          if(products[i].categories[j].name.toLowerCase() === filterCategorie.toLowerCase()){
-            filterdProducts.push(products[i]);
+      if(filterCategorie === 'Show All'){
+        filterdProducts = products;
+      }else{
+        filterdProducts = []
+        for(let i = 0; i < products.length; i++){
+          for(let j=0; j < products[i].categories.length; j++){
+            if(products[i].categories[j].name.toLowerCase() === filterCategorie.toLowerCase()){
+              filterdProducts.push(products[i]);
+            }
           }
         }
       }
@@ -28,6 +32,7 @@ const ProductList = () => {
 
     }
   }
+  //console.log(filterdProducts);
 
   return (
     <>
@@ -36,11 +41,15 @@ const ProductList = () => {
         {status === "pending" && <h5>Loading ...</h5>}
         {status === "rejected" && <h5>An error occured ..</h5>}
         {status === "success" &&
+        filterdProducts !== [] &&
           filterdProducts.map((product) => (
             <Grid.Column width={5} key={product.id}>
               <ProductCard product={product} />
             </Grid.Column>
           ))}
+          {status === "success" &&
+        filterdProducts === [] &&
+        (<div>Loading...</div>)}
       </Grid>
     </>
   );
