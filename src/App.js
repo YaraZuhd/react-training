@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import PageNotFound from "../src/Pages/PageNotFound";
@@ -6,17 +6,9 @@ import AuthPage from './Pages/Auth';
 import HomePage from './Pages/HomePage';
 import Cart from './component/Cart/cart';
 import ProductContainer from './component/Products/ProductContainer';
-import store from "./store/store";
-import { cartFetch } from "./redux/cartSlice";
-import { productsFetch } from "./redux/productSlice";
 
 const App = ()=> {
-  // if (localStorage.getItem("token") !== null) {
-  //   useEffect(() => {
-  //     store.dispatch(productsFetch());
-  //     store.dispatch(cartFetch());
-  //   });
-  // }
+
   return (
     <div className="App">
        <Routes>

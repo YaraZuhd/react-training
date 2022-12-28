@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./styles/index.css";
 import "semantic-ui-css/semantic.min.css";
 import { createRoot } from "react-dom/client";

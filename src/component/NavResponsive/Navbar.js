@@ -12,7 +12,6 @@ const Navbar = (props) => {
   let cartItemsArray = [];
   cartInfo = useSelector((state) => state.cart.cartInfo);
   cartItemsArray = useSelector((state) => state.cart.cartItemsArray);
-  //console.log(cartInfo,cartItemsArray.length);
 
   return (
     <nav className="navigation">
@@ -46,12 +45,12 @@ const Navbar = (props) => {
                 Cart
               </Link>
             )}
-            {cartInfo !== null && cartItemsArray.length === 0 && (
+            {cartInfo !== null && cartItemsArray && cartItemsArray.length === 0 && (
               <Link to={"/cart"} className={"nav-item"}>
                 Cart
               </Link>
             )}
-            {cartInfo !== null && cartItemsArray.length > 0 && (
+            {cartInfo !== null && cartItemsArray && cartItemsArray.length > 0 && (
               <Link to={"/cart"} className={"nav-item"}>
                 Cart
                 <span className="badge">{cartItemsArray.length}</span>
