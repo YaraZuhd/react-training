@@ -32,7 +32,6 @@ const ProductList = () => {
 
     }
   }
-  //console.log(filterdProducts);
 
   return (
     <>

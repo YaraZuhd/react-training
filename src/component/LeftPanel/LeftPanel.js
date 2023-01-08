@@ -8,7 +8,7 @@ import { filterProduct } from "../../redux/productSlice";
 const LeftPanel = () => {
   const dispatch = useDispatch();
   const [activeFilter, setActiveFilter] = useState({
-    AllProducts: false,
+    AllProducts: true,
     Phones: false,
     Cars: false,
     Trucks: false,

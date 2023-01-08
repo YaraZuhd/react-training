@@ -10,9 +10,7 @@ const Home = () => {
   const [toggle, setToggle] = useState(false);
 
   let cartInfo = {};
-  let cartItemsArray = [];
   cartInfo = useSelector((state) => state.cart.cartInfo);
-  cartItemsArray = useSelector((state) => state.cart.cartItemsArray);
 
   const handelCallback = (childData) => {
     setToggle(childData);
@@ -22,7 +20,7 @@ const Home = () => {
     if (token === null) {
       navigate("login");
     }
-    const timer = setTimeout(() => {
+    setTimeout(() => {
     }, 2000);
     return () => <div>Loading ...</div>
   }, [navigate, token]);
@@ -35,11 +33,6 @@ const Home = () => {
                 Loading...
             </div>
         )}
-                {/* {cartInfo !== null && cartItemsArray === [] (
-            <div>
-                Loading...
-            </div>
-        )} */}
         <div>
           <Navbar toggleCallback={handelCallback} />
           <h1>Welcome To Our Website</h1>
