@@ -128,7 +128,6 @@ const LeftPanel = () => {
         <Menu.Item>
           <Menu.Header
             className={activeFilter.Cars ? "element-active" : "header-cars"}
-            o
             onClick={(event) => {
               handelFilteration(event);
               setActiveFilter({

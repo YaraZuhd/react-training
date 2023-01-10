@@ -16,9 +16,6 @@ const Cart = (props) => {
   let {
     cartInfo,
     cartItemsArray,
-    cartTotalQuantity,
-    cartTotalAmount,
-    status,
   } = useSelector((state) => state.cart);
 
   const handelCallback = (childData) => {
