@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const PaginationProducts = ({totalProducts,productPerPage, paginateFunction})=>{
-    console.log(totalProducts,productPerPage);
+    console.log(totalProducts,productPerPage)
     const pageNumbers = [];
     for(let i = 1; i < Math.ceil(totalProducts/productPerPage); i++){
         pageNumbers.push(i);

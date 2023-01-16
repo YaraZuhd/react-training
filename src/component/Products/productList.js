@@ -4,7 +4,7 @@ import "./productList.css";
 import { Grid, Divider } from "semantic-ui-react";
 import ProductCard from "./ProductCard";
 import PaginationProducts from "../Paginaion/Pagination";
-import { async } from "q";
+
 const ProductList = () => {
   const {
     products,
@@ -13,40 +13,38 @@ const ProductList = () => {
     filterProduct,
     status,
   } = useSelector((state) => state.products);
-  console.log(filterd,filterCategorie,filterProduct);
   const [limit ,setLimit] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentPageFilteration,setCurrentPageFilteration] = useState(1);
-  const [productPagination, setProductPagination] = useState([]);
-
+   const [currentPageFilteration,setCurrentPageFilteration] = useState(1);
+   const [productPagination, setProductPagination] = useState([]);
+   const[FF,setFF] =useState([]);
   let filterdProducts = products ? products : [];
+  let FulFilterd = []
 
-  const getFiterationProducts = async() =>{
-    try{
-      let requestOptions = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      };
-      const response = await fetch(
-        `http://localhost:3000/products/filter-Products?page=${currentPageFilteration}`,
-        requestOptions
-      );
-      const data = await response.json();
-      if (data.next) {
-        setLimit(data.next.limit);
-      } else if (data.previous) {
-        setLimit(data.previous.limit);
-      }
-      for (let i = 0; i < data.length; i++) {
-        filterdProducts.push(data[i]);
-      }
-      return data;
-    }catch(error){
-      console.log(error);
-    }
-  }
+  // const getFiterationProducts = async() =>{
+  //   try{
+  //     let requestOptions = {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //       },
+  //     };
+  //     const response = await fetch(
+  //       `http://localhost:3000/products/filter-Products?page=${currentPageFilteration}`,
+  //       requestOptions
+  //     );
+  //     const data = await response.json();
+  //     if (data.next) {
+  //       setLimit(data.next.limit);
+  //     } else if (data.previous) {
+  //       setLimit(data.previous.limit);
+  //     }
+  //     filterdProducts = data;
+  //     return data;
+  //   }catch(error){
+  //     console.log(error);
+  //   }
+  // }
 
   const filterProductsFunc = async() => {
     try{
@@ -63,8 +61,10 @@ const ProductList = () => {
         requestOptions
       );
       const data = await response.json();
-      filterdProducts = data;
-      filterProductsFunc();
+      setFF(data)
+      console.log(data.length)
+      FulFilterd = data
+      return data;
     }catch(error){
       console.log(error)
     }
@@ -96,22 +96,29 @@ const ProductList = () => {
   }
 
   const paginateFunc = (pageNumber) => {
-    setCurrentPage(pageNumber)
+    setCurrentPage(pageNumber);
+    setCurrentPageFilteration(pageNumber);
   }
 
+
   if (filterd) {
-    filterProductsFunc()
-  }else{
+    filterProductsFunc();
+    filterdProducts = FF;
+  }
+  else{
     filterdProducts=productPagination
   }
 
   useEffect(() => {
     fetchData();
+    //filterProductsFunc();
   }, [currentPage]);
 
-  useEffect(() => {
-    getFiterationProducts();
-  }, [currentPageFilteration]);
+  // useEffect(() => {
+  //   filterProductsFunc();
+  //   getFiterationProducts();
+  // }, [filterd]);
+
 
   return (
     <>
@@ -131,9 +138,10 @@ const ProductList = () => {
         )}
       </Grid>
       {(!filterd) && <PaginationProducts productPerPage= {limit} totalProducts = {products.length} paginateFunction={paginateFunc}/>}
-      {filterd && <PaginationProducts productPerPage= {limit} totalProducts = {filterdProducts.length} paginateFunction={paginateFunc}/>}
+      {filterd && (FulFilterd.length !== 0 )&& <PaginationProducts productPerPage= {limit} totalProducts = {FF.length} paginateFunction={paginateFunc}/>} 
     </>
   );
+
 };
 
 export default ProductList;
