@@ -67,7 +67,6 @@ const cartSlice = createSlice({
   initialState: INITIALSTATE,
   reducers: {
     addToCart(state, action) {
-      console.log(action.payload);
       const itemIndex = state.cartItemsArray.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -84,7 +83,6 @@ const cartSlice = createSlice({
       }
     },
     updateCartItems(state, action) {
-      console.log(action.payload);
       const itemIndex = state.cartItemsArray.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -99,7 +97,6 @@ const cartSlice = createSlice({
         (item) => 
         item.productId === action.payload
       );
-      console.log(itemIndex);
       // state.cartInfo.quentity =
       //   state.cartInfo.quentity - state.cartItemsArray[itemIndex].quantity;
       // state.cartInfo.price =

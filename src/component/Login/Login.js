@@ -102,13 +102,12 @@ const Login = () => {
             }
             else {
               if(userInput.userEmail.length > 0 && userInput.userPassword.length ===0){
-                errorMessage.passwordError = "Password is required";
+                setErrorMessage((prevState) => ({ ...prevState, passwordError: "Password is required" }));
               }else if(userInput.userEmail.length === 0 && userInput.userPassword.length >0){
-                 errorMessage.emailError = "Email is required";
+                setErrorMessage((prevState) => ({ ...prevState, emailError: "Email is required" }));
               }else if (userInput.userEmail.length >0 && userInput.userPassword.length >0){
-                  errorMessage.passwordError = "Password is required";
-                  errorMessage.emailError = "Email is required";
-              }  
+                setErrorMessage({ emailError: "Email is required", passwordError: "Password is required" });
+              }
             }
          } catch(error) {
             setErrorState("Invalid Information");
