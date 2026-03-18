@@ -50,7 +50,7 @@ const ProductCard = (props) => {
             <Card.Content>
                 <Card.Header>{props.product.name}</Card.Header>
                 <Card.Meta>$ {props.product.price}</Card.Meta>
-                <Card.Description>{props.product.desription}</Card.Description>
+                <Card.Description>{props.product.description}</Card.Description>
                 <div className='quanity-group'>
                     <Button
                         negative 

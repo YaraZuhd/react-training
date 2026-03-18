@@ -232,15 +232,17 @@ const options = [
           navigate("/login")
       }
       else {
-        const error = await  response.text();
-        errorMessage.firstNameError = "First Name is required";
-        errorMessage.lastNameError = "Last Name is required";
-        errorMessage.genderError = "Gender is required";
-        errorMessage.phoneError = "Phone is required";
-        errorMessage.addressError = "Address is required";
-        errorMessage.emailError = "Email is required";
-        errorMessage.passwordError = "Password is required";
-        errorMessage.confirmPasswordError = "Confirm Password is required"
+        const error = await response.text();
+        setErrorMessage({
+          firstNameError: "First Name is required",
+          lastNameError: "Last Name is required",
+          genderError: "Gender is required",
+          phoneError: "Phone is required",
+          addressError: "Address is required",
+          emailError: "Email is required",
+          passwordError: "Password is required",
+          confirmPasswordError: "Confirm Password is required",
+        });
         setErrorState(error);
       }
   } catch(error) {

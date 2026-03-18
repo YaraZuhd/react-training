@@ -30,7 +30,7 @@ const Cart = (props) => {
   return (
     <>
       <Navbar toggleCallback={handelCallback} />
-      {cartInfo !== null && cartItemsArray.length !== 0 && (
+      {cartInfo !== null && Object.keys(cartInfo).length !== 0 && cartItemsArray.length !== 0 && (
         <>
           <Item.Group divided>
             {cartItemsArray.map((item) => (
